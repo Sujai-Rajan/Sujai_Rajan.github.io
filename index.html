@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sujai Rajan — Robotics Engineer | Digital Twin Command Center</title>
+
+  <!-- Tailwind CSS v4 (browser runtime) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Motion (Framer's Motion One; vanilla-friendly) -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.umd.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#050505;
+      --lime:#ccff00;
+      --blue:#2e66ff;
+      --glass: rgba(255,255,255,0.06);
+      --glass2: rgba(255,255,255,0.10);
+    }
+    html,body{ background:var(--bg); color:#eaeaea; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; }
+    .mono{ font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    /* Mesh gradient "command center" background */
+    .mesh {
+      position:absolute; inset:-30% -30% -30% -30%;
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(204,255,0,.18), transparent 60%),
+        radial-gradient(850px 500px at 90% 25%, rgba(46,102,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 35% 85%, rgba(204,255,0,.10), transparent 60%),
+        radial-gradient(900px 600px at 80% 80%, rgba(46,102,255,.10), transparent 60%);
+      filter: blur(30px) saturate(120%);
+      animation: drift 10s ease-in-out infinite alternate;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes drift{
+      from{ transform: translate3d(-2%, -1%, 0) scale(1.02); }
+      to{ transform: translate3d(2%, 1%, 0) scale(1.06); }
+    }
+
+    /* Subtle noise overlay */
+    .noise::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      opacity:.10; mix-blend-mode: overlay; pointer-events:none;
+    }
+
+    /* Glass + neon edges */
+    .glass{
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glow-border{
+      box-shadow: 0 0 0 1px rgba(204,255,0,.14), 0 0 28px rgba(204,255,0,.06);
+    }
+    .hover-glow:hover{
+      box-shadow: 0 0 0 1px rgba(204,255,0,.25), 0 0 42px rgba(204,255,0,.10);
+      transform: translateY(-2px);
+    }
+
+    /* Animated "scanline" */
+    .scanline{
+      position:absolute; inset:0; pointer-events:none;
+      background: linear-gradient(to bottom, transparent, rgba(204,255,0,.08), transparent);
+      height: 220px; width: 100%;
+      transform: translateY(-260px);
+      animation: scan 4.8s ease-in-out infinite;
+      mix-blend-mode: screen;
+      opacity: .35;
+    }
+    @keyframes scan{
+      0%{ transform: translateY(-260px); }
+      60%{ transform: translateY(120%); }
+      100%{ transform: translateY(120%); }
+    }
+
+    /* Neon link */
+    a.link{ color: var(--blue); }
+    a.link:hover{ color: #7aa0ff; text-shadow: 0 0 14px rgba(46,102,255,.35); }
+
+    /* Focus ring */
+    .ring-lime:focus{ outline: none; box-shadow: 0 0 0 2px rgba(204,255,0,.25), 0 0 0 6px rgba(204,255,0,.08); }
+
+    /* Nav blur */
+    .navglass{
+      background: rgba(5,5,5,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden">
+  <!-- Fixed Nav -->
+  <header class="fixed top-0 left-0 right-0 z-50 navglass">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl glass glow-border grid place-items-center">
+          <span class="mono text-[12px] text-[#ccff00]">SR</span>
+        </div>
+        <div class="leading-tight">
+          <div class="text-sm font-semibold tracking-wide">Sujai Rajan</div>
+          <div class="text-xs text-white/60 mono">Digital Twin Command Center</div>
+        </div>
+      </a>
+
+      <nav class="flex items-center gap-2 text-sm">
+        <a class="px-3 py-2 rounded-xl glass hover-glow transition will-change-transform" href="index.html">Home</a>
+        <a class="px-3 py-2 rounded-xl glass hover-glow transition will-change-transform" href="projects.html">Projects</a>
+        <a class="px-3 py-2 rounded-xl glass hover-glow transition will-change-transform" href="about.html">Experience</a>
+        <a class="px-3 py-2 rounded-xl glass hover-glow transition will-change-transform" href="contact.html">Contact</a>
+        <a class="px-3 py-2 rounded-xl border border-white/15 hover:border-[#2e66ff]/60 transition"
+           href="https://www.linkedin.com/in/sujai-r/" target="_blank" rel="noreferrer">
+          LinkedIn ↗
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="relative pt-24">
+    <section class="relative overflow-hidden">
+      <div class="mesh"></div>
+      <div class="noise absolute inset-0"></div>
+      <div class="scanline"></div>
+
+      <div class="mx-auto max-w-6xl px-4 py-14 relative">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full glass border border-white/10">
+              <span class="h-2 w-2 rounded-full bg-[#ccff00] shadow-[0_0_20px_rgba(204,255,0,.45)]"></span>
+              <span class="mono text-xs text-white/70">SYSTEM STATUS: ONLINE</span>
+            </div>
+
+            <h1 class="mt-5 text-4xl md:text-6xl font-extrabold tracking-tight">
+              ROBOTICS ENGINEER <span class="text-white/50">|</span> <span class="text-[#ccff00]">SYSTEMS ARCHITECT.</span>
+            </h1>
+
+            <p class="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
+              I design end-to-end robotic systems across perception, planning, controls, and embedded integration —
+              built for real factories, real constraints, and real throughput.
+            </p>
+
+            <!-- CTA row -->
+            <div class="mt-7 flex flex-wrap items-center gap-3">
+              <a href="projects.html"
+                 class="px-5 py-3 rounded-2xl bg-[#ccff00] text-black font-semibold tracking-wide hover:brightness-110 transition ring-lime">
+                Enter The Bento Lab
+              </a>
+              <a href="about.html"
+                 class="px-5 py-3 rounded-2xl glass hover-glow transition ring-lime">
+                View Mission Log
+              </a>
+              <a href="contact.html"
+                 class="px-5 py-3 rounded-2xl border border-white/15 hover:border-[#ccff00]/60 transition ring-lime">
+                Initiate Contact
+              </a>
+            </div>
+
+            <!-- Technical Stats bar -->
+            <div id="statsBar" class="mt-9 grid grid-cols-3 gap-3">
+              <div class="glass glow-border rounded-2xl p-4 hover-glow transition">
+                <div class="mono text-xs text-white/60">TECHNICAL STATS</div>
+                <div class="mt-2 text-xl font-bold"><span class="text-[#ccff00]">13+</span> Projects</div>
+                <div class="mono text-xs text-white/60 mt-1">Academic + Industrial</div>
+              </div>
+              <div class="glass glow-border rounded-2xl p-4 hover-glow transition">
+                <div class="mono text-xs text-white/60">FIELD TIME</div>
+                <div class="mt-2 text-xl font-bold"><span class="text-[#ccff00]">3</span> Work Terms</div>
+                <div class="mono text-xs text-white/60 mt-1">2020 → Current</div>
+              </div>
+              <div class="glass glow-border rounded-2xl p-4 hover-glow transition">
+                <div class="mono text-xs text-white/60">EDUCATION</div>
+                <div class="mt-2 text-xl font-bold"><span class="text-[#ccff00]">M.S.</span> Robotics</div>
+                <div class="mono text-xs text-white/60 mt-1">Northeastern University</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: "Sensor Dock" visual -->
+          <div class="lg:col-span-5">
+            <div id="sensorDock" class="glass glow-border rounded-3xl p-5 relative overflow-hidden">
+              <div class="absolute inset-0 opacity-40 pointer-events-none"
+                   style="background:
+                     radial-gradient(600px 260px at 30% 20%, rgba(46,102,255,.35), transparent 60%),
+                     radial-gradient(520px 280px at 70% 70%, rgba(204,255,0,.28), transparent 60%);"></div>
+
+              <div class="relative flex items-center justify-between">
+                <div>
+                  <div class="mono text-xs text-white/60">LIVE TELEMETRY</div>
+                  <div class="mt-1 text-lg font-semibold">Perception + Motion</div>
+                </div>
+                <div class="mono text-xs text-white/60">FPS <span class="text-[#ccff00] font-semibold" id="fps">—</span></div>
+              </div>
+
+              <!-- Animated "robot + sensors" inline SVG -->
+              <div class="mt-4 rounded-2xl border border-white/10 overflow-hidden bg-black/40">
+                <svg viewBox="0 0 840 360" class="w-full h-auto">
+                  <defs>
+                    <linearGradient id="g" x1="0" x2="1">
+                      <stop offset="0" stop-color="#2e66ff" stop-opacity="0.55"/>
+                      <stop offset="1" stop-color="#ccff00" stop-opacity="0.45"/>
+                    </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="4" result="b"/>
+                      <feMerge>
+                        <feMergeNode in="b"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <!-- grid -->
+                  <g opacity="0.25" stroke="white">
+                    <path d="M0 300 H840" />
+                    <path d="M0 240 H840" />
+                    <path d="M0 180 H840" />
+                    <path d="M0 120 H840" />
+                    <path d="M0 60 H840" />
+                    <path d="M140 0 V360" />
+                    <path d="M280 0 V360" />
+                    <path d="M420 0 V360" />
+                    <path d="M560 0 V360" />
+                    <path d="M700 0 V360" />
+                  </g>
+
+                  <!-- lidar sweep -->
+                  <g filter="url(#glow)">
+                    <circle cx="210" cy="210" r="6" fill="#ccff00"/>
+                    <path id="sweepArc" d="M210 210 m -110 0 a 110 110 0 0 1 220 0" fill="none" stroke="url(#g)" stroke-width="10" opacity="0.9"/>
+                  </g>
+
+                  <!-- robot silhouette -->
+                  <g filter="url(#glow)">
+                    <rect x="500" y="120" width="140" height="150" rx="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)"/>
+                    <rect x="528" y="90" width="84" height="44" rx="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)"/>
+                    <circle cx="555" cy="112" r="6" fill="#2e66ff"/>
+                    <circle cx="585" cy="112" r="6" fill="#2e66ff"/>
+                    <path d="M520 210 H660" stroke="#ccff00" stroke-width="3" opacity=".7"/>
+                    <rect x="480" y="170" width="26" height="90" rx="12" fill="rgba(255,255,255,0.07)"/>
+                    <rect x="634" y="170" width="26" height="90" rx="12" fill="rgba(255,255,255,0.07)"/>
+                    <rect x="520" y="270" width="44" height="60" rx="14" fill="rgba(255,255,255,0.07)"/>
+                    <rect x="576" y="270" width="44" height="60" rx="14" fill="rgba(255,255,255,0.07)"/>
+                  </g>
+
+                  <!-- data points -->
+                  <g class="mono" font-size="12" fill="rgba(255,255,255,0.75)">
+                    <text x="40" y="28">SENSORS</text>
+                    <text x="40" y="52" fill="#ccff00">LiDAR</text>
+                    <text x="40" y="72">IMU</text>
+                    <text x="40" y="92">GPS</text>
+
+                    <text x="690" y="28">PIPELINE</text>
+                    <text x="690" y="52" fill="#ccff00">Fusion</text>
+                    <text x="690" y="72">Planning</text>
+                    <text x="690" y="92">Control</text>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- micro telemetry pills -->
+              <div class="mt-4 grid grid-cols-2 gap-3">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div class="mono text-xs text-white/60">LOCALIZATION</div>
+                  <div class="mt-1 flex items-end justify-between">
+                    <div class="text-base font-semibold">EKF / SLAM</div>
+                    <div class="mono text-xs text-[#ccff00]" id="locStatus">LOCKED</div>
+                  </div>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div class="mono text-xs text-white/60">CONTROL</div>
+                  <div class="mt-1 flex items-end justify-between">
+                    <div class="text-base font-semibold">PID / MPC</div>
+                    <div class="mono text-xs text-[#2e66ff]" id="ctrlMode">AUTO</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 text-sm text-white/65 leading-relaxed">
+                Built for <span class="text-[#ccff00] font-semibold">real deployment</span>: ROS2, OpenCV, sensor fusion, motion planning, and embedded control —
+                optimized for throughput and traceability.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Systems -->
+        <div class="mt-12">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <div class="mono text-xs text-white/60">CORE SYSTEMS</div>
+              <h2 class="mt-1 text-2xl md:text-3xl font-bold">Your autonomous stack, modularized.</h2>
+            </div>
+            <a href="projects.html" class="link text-sm mono">View full build matrix →</a>
+          </div>
+
+          <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Card 1 -->
+            <button class="coreCard glass glow-border rounded-3xl p-5 text-left hover-glow transition will-change-transform">
+              <div class="mono text-xs text-white/60">01</div>
+              <div class="mt-2 text-lg font-semibold">Autonomous Navigation</div>
+              <p class="mt-2 text-sm text-white/70 leading-relaxed">
+                Localization + mapping + recovery behavior tuned for stability in sim and field.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">ROS2 Nav2</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">EKF</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">A*/DWA</span>
+              </div>
+            </button>
+            <!-- Card 2 -->
+            <button class="coreCard glass glow-border rounded-3xl p-5 text-left hover-glow transition will-change-transform">
+              <div class="mono text-xs text-white/60">02</div>
+              <div class="mt-2 text-lg font-semibold">Computer Vision</div>
+              <p class="mt-2 text-sm text-white/70 leading-relaxed">
+                Feature extraction, verification, tracking, and robust imaging under nasty lighting.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">OpenCV</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">YOLO</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">3D Vision</span>
+              </div>
+            </button>
+            <!-- Card 3 -->
+            <button class="coreCard glass glow-border rounded-3xl p-5 text-left hover-glow transition will-change-transform">
+              <div class="mono text-xs text-white/60">03</div>
+              <div class="mt-2 text-lg font-semibold">Embedded Systems</div>
+              <p class="mt-2 text-sm text-white/70 leading-relaxed">
+                Sensor IO, motor control, safety interlocks, and deterministic behaviors.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">Raspberry Pi</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">ESP32</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">RTOS</span>
+              </div>
+            </button>
+            <!-- Card 4 -->
+            <button class="coreCard glass glow-border rounded-3xl p-5 text-left hover-glow transition will-change-transform">
+              <div class="mono text-xs text-white/60">04</div>
+              <div class="mt-2 text-lg font-semibold">Control Theory</div>
+              <p class="mt-2 text-sm text-white/70 leading-relaxed">
+                From classical PID loops to MPC constraints — tuned for repeatability.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">PID</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">MPC</span>
+                <span class="mono text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5">Kinematics</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Footer mini -->
+        <div class="mt-12 pb-12 flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm text-white/60">
+          <div class="mono">© <span id="year"></span> Sujai Rajan — Robotics Portfolio</div>
+          <div class="flex gap-4">
+            <a class="link mono" href="mailto:send2sujai@gmail.com">send2sujai@gmail.com</a>
+            <a class="link mono" href="tel:+16176020833">+1 (617) 602-0833</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const { animate, inView, spring, stagger } = window.motion;
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Fake FPS telemetry (visual flair)
+    const fpsEl = document.getElementById("fps");
+    let t = 0;
+    setInterval(() => {
+      t += 1;
+      const fps = 58 + Math.round(4 * Math.sin(t / 3));
+      fpsEl.textContent = fps;
+    }, 500);
+
+    // Animate sweep arc by rotating it (simple visual trick)
+    const arc = document.getElementById("sweepArc");
+    let a = 0;
+    setInterval(() => {
+      a = (a + 8) % 360;
+      arc.setAttribute("transform", `rotate(${a} 210 210)`);
+    }, 60);
+
+    // Reveal animations
+    inView("#statsBar > div", (info) => {
+      animate(info.target, { opacity: [0, 1], y: [14, 0] }, { duration: 0.7, delay: info.index * 0.07, easing: spring({ stiffness: 180, damping: 18 }) });
+    });
+
+    inView(".coreCard", (info) => {
+      animate(info.target, { opacity: [0, 1], y: [18, 0] }, { duration: 0.7, delay: info.index * 0.06, easing: spring({ stiffness: 200, damping: 20 }) });
+    });
+
+    inView("#sensorDock", () => {
+      animate("#sensorDock", { opacity: [0, 1], scale: [0.98, 1] }, { duration: 0.8, easing: spring({ stiffness: 160, damping: 16 }) });
+    });
+
+    // Micro-interaction: card tilt based on pointer
+    const dock = document.getElementById("sensorDock");
+    dock.addEventListener("mousemove", (e) => {
+      const r = dock.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      dock.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg) translateY(-1px)`;
+    });
+    dock.addEventListener("mouseleave", () => {
+      dock.style.transform = "none";
+    });
+  </script>
+</body>
+</html>
