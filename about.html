@@ -1,0 +1,784 @@
+<!-- about.html (Experience / Mission Log) -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sujai Rajan — Experience | Mission Log</title>
+
+    <!-- Tailwind CSS v4 (Play CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Framer Motion (UMD) -->
+    <script defer src="https://unpkg.com/framer-motion@12.23.26/dist/framer-motion.js"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-obsidian: #050505;
+        --color-cyberlime: #ccff00;
+        --color-cobalt: #2e66ff;
+        --color-glass: rgba(255, 255, 255, 0.06);
+        --color-glass-strong: rgba(255, 255, 255, 0.09);
+        --color-stroke: rgba(255, 255, 255, 0.12);
+        --shadow-neon: 0 0 0 1px rgba(204, 255, 0, 0.18), 0 0 40px rgba(204, 255, 0, 0.08),
+          0 0 120px rgba(46, 102, 255, 0.06);
+        --shadow-neon-strong: 0 0 0 1px rgba(204, 255, 0, 0.28), 0 0 60px rgba(204, 255, 0, 0.12),
+          0 0 160px rgba(46, 102, 255, 0.1);
+      }
+
+      html,
+      body {
+        background: var(--color-obsidian);
+        color: white;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+      }
+
+      .glass {
+        background: var(--color-glass);
+        border: 1px solid var(--color-stroke);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      .glass-strong {
+        background: var(--color-glass-strong);
+        border: 1px solid var(--color-stroke);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .neon-ring {
+        box-shadow: var(--shadow-neon);
+      }
+
+      .neon-ring-strong {
+        box-shadow: var(--shadow-neon-strong);
+      }
+
+      .hover-lift {
+        transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease, background 280ms ease;
+        will-change: transform, box-shadow;
+      }
+      .hover-lift:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-neon-strong);
+        border-color: rgba(204, 255, 0, 0.28);
+        background: rgba(255, 255, 255, 0.075);
+      }
+
+      /* Animated mesh gradient */
+      .mesh {
+        background:
+          radial-gradient(900px 620px at 12% 18%, rgba(204, 255, 0, 0.16), transparent 55%),
+          radial-gradient(860px 590px at 82% 20%, rgba(46, 102, 255, 0.18), transparent 55%),
+          radial-gradient(760px 560px at 66% 86%, rgba(204, 255, 0, 0.10), transparent 55%),
+          radial-gradient(900px 700px at 22% 80%, rgba(46, 102, 255, 0.10), transparent 55%),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent 22%, rgba(255, 255, 255, 0.02));
+        filter: saturate(1.12) contrast(1.05);
+        animation: meshShift 17s ease-in-out infinite alternate;
+        transform: translateZ(0);
+      }
+      @keyframes meshShift {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          filter: saturate(1.05) contrast(1.05);
+        }
+        100% {
+          transform: translate3d(0, -10px, 0) scale(1.02);
+          filter: saturate(1.25) contrast(1.1);
+        }
+      }
+
+      .scanlines {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 100% 6px;
+        opacity: 0.10;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+
+      .vignette {
+        background: radial-gradient(circle at 50% 10%, transparent 0%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0.92) 100%);
+        pointer-events: none;
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 8px;
+        bottom: 8px;
+        left: 14px;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(204, 255, 0, 0.0), rgba(204, 255, 0, 0.55), rgba(46, 102, 255, 0.45), rgba(204, 255, 0, 0.0));
+        filter: drop-shadow(0 0 16px rgba(204,255,0,0.18));
+      }
+      .node {
+        position: relative;
+        padding-left: 44px;
+      }
+      .dot {
+        position: absolute;
+        left: 6px;
+        top: 12px;
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(204, 255, 0, 0.12);
+        border: 1px solid rgba(204, 255, 0, 0.28);
+        box-shadow: 0 0 22px rgba(204,255,0,0.18);
+      }
+      .dot::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 999px;
+        background: #ccff00;
+        box-shadow: 0 0 20px rgba(204,255,0,0.55);
+      }
+
+      /* Tilt */
+      .tilt {
+        transform-style: preserve-3d;
+        perspective: 900px;
+      }
+      .tilt > .tilt-inner {
+        transform: translateZ(0);
+        will-change: transform;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .mesh {
+          animation: none !important;
+        }
+        .hover-lift {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen">
+    <!-- Background -->
+    <div class="fixed inset-0 -z-50">
+      <div class="absolute inset-0 mesh"></div>
+      <div class="absolute inset-0 scanlines"></div>
+      <div class="absolute inset-0 vignette"></div>
+      <canvas id="stars" class="absolute inset-0 opacity-55"></canvas>
+    </div>
+
+    <!-- Fixed Nav -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 glass rounded-2xl">
+          <div class="flex items-center justify-between px-4 py-3 sm:px-5">
+            <a href="index.html" class="group flex items-center gap-3">
+              <div class="h-10 w-10 rounded-xl glass-strong neon-ring flex items-center justify-center" aria-hidden="true">
+                <div class="h-2.5 w-2.5 rounded-full" style="background:#ccff00; box-shadow: 0 0 22px rgba(204,255,0,.45)"></div>
+              </div>
+              <div class="leading-tight">
+                <div class="text-sm font-semibold tracking-wide">SUJAI RAJAN</div>
+                <div class="mono text-[11px] text-white/60 group-hover:text-white/80 transition">MISSION LOG</div>
+              </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-2">
+              <a href="index.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition">Home</a>
+              <a href="projects.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition">Projects</a>
+              <a href="about.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/90 hover:text-white hover:bg-white/5 transition">Experience</a>
+              <a href="#contact" class="px-3 py-2 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition">Contact</a>
+
+              <a
+                href="#work"
+                class="ml-2 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-black"
+                style="background:#ccff00"
+              >
+                <span>Jump to Timeline</span>
+                <span class="mono text-[12px]">↓</span>
+              </a>
+            </div>
+
+            <button id="mobileBtn" class="md:hidden rounded-xl px-3 py-2 glass hover:bg-white/5 transition" aria-label="Open menu">
+              <span class="mono text-xs text-white/80">MENU</span>
+            </button>
+          </div>
+
+          <div id="mobileMenu" class="hidden border-t border-white/10 px-4 py-3">
+            <div class="grid gap-2">
+              <a href="index.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/5 transition">Home</a>
+              <a href="projects.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/5 transition">Projects</a>
+              <a href="about.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 transition">Experience</a>
+              <a href="#contact" class="rounded-xl px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/5 transition">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-28 sm:pt-32">
+      <!-- Header -->
+      <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-7 glass rounded-3xl p-6 sm:p-8 neon-ring">
+            <div class="flex items-center gap-3">
+              <div class="mono text-xs text-white/60">CAREER TRACE</div>
+              <div class="h-[1px] flex-1 bg-white/10"></div>
+              <div class="mono text-xs" style="color:#ccff00">LOGGED</div>
+            </div>
+
+            <h1 class="mt-5 text-3xl sm:text-5xl font-extrabold tracking-tight">
+              The <span style="color:#ccff00">Mission Log</span>
+            </h1>
+            <p class="mt-3 text-white/75 text-base sm:text-lg leading-relaxed">
+              A vertical timeline of work experience and an academic evolution track.
+              Base build focuses on structure, clarity, and the “glowing mission UI” aesthetic.
+            </p>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+              <div class="glass-strong rounded-2xl px-4 py-4">
+                <div class="mono text-[11px] text-white/60">WORK</div>
+                <div class="mt-1 text-lg font-bold text-white/90">3 Experiences</div>
+                <div class="mt-1 text-sm text-white/65">Timeline format</div>
+              </div>
+              <div class="glass-strong rounded-2xl px-4 py-4">
+                <div class="mono text-[11px] text-white/60">ACADEMICS</div>
+                <div class="mt-1 text-lg font-bold"><span style="color:#ccff00">13+</span> Projects</div>
+                <div class="mt-1 text-sm text-white/65">Evolution track</div>
+              </div>
+              <div class="glass-strong rounded-2xl px-4 py-4">
+                <div class="mono text-[11px] text-white/60">FOCUS</div>
+                <div class="mt-1 text-lg font-bold text-white/90">Robotics Systems</div>
+                <div class="mt-1 text-sm text-white/65">Perception → Control</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: "profile / status" panel -->
+          <div class="lg:col-span-5 grid gap-4">
+            <div class="glass rounded-3xl p-5 sm:p-6 neon-ring tilt" id="tiltPanel">
+              <div class="tilt-inner">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="mono text-xs text-white/60">ENGINEER PROFILE</div>
+                    <div class="mt-1 text-xl font-bold">Systems-first Robotics</div>
+                    <div class="mt-1 text-sm text-white/70">
+                      Strong in simulation-to-reality delivery, sensor fusion, and reliability.
+                    </div>
+                  </div>
+                  <div class="mono text-xs rounded-xl px-3 py-1 glass-strong" style="color:#ccff00">ACTIVE</div>
+                </div>
+
+                <div class="mt-5 grid gap-3">
+                  <div class="glass-strong rounded-2xl p-4 hover-lift">
+                    <div class="mono text-[11px] text-white/60">SIGNATURE STACK</div>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">ROS2</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Python</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">C++</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">OpenCV</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">GTSAM</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">SLAM</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Kalman</span>
+                      <span class="mono text-[11px] rounded-xl px-2 py-1 glass">MPC/LQR</span>
+                    </div>
+                  </div>
+
+                  <a href="projects.html#grid" class="glass-strong rounded-2xl p-4 hover-lift block">
+                    <div class="mono text-[11px] text-white/60">NEXT</div>
+                    <div class="mt-1 font-bold text-white/90">Browse Projects Grid</div>
+                    <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/projects</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-5 sm:p-6 neon-ring hover:bg-white/5 transition">
+              <div class="mono text-xs text-white/60">DOWNLOAD</div>
+              <div class="mt-2 text-xl font-bold">Resume + Links</div>
+              <div class="mt-2 text-sm text-white/70">
+                Base placeholder: wire the resume PDF and email in the final polish pass.
+              </div>
+
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                <a class="glass-strong rounded-2xl px-4 py-3 hover-lift" href="#" onclick="alert('Wire resume.pdf link later'); return false;">
+                  <div class="mono text-[11px] text-white/60">PDF</div>
+                  <div class="mt-1 font-bold text-white/90">Download Resume</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/assets/resume.pdf</div>
+                </a>
+                <a class="glass-strong rounded-2xl px-4 py-3 hover-lift" href="https://www.linkedin.com/in/sujai-r/" target="_blank" rel="noreferrer">
+                  <div class="mono text-[11px] text-white/60">SOCIAL</div>
+                  <div class="mt-1 font-bold text-white/90">LinkedIn</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/in/sujai-r ↗</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work Timeline -->
+      <section id="work" class="mt-10 sm:mt-14 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <div class="mono text-xs text-white/60">WORK HISTORY</div>
+            <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
+              Glowing Timeline <span class="text-white/60">—</span> <span style="color:#ccff00">3 roles</span>
+            </h2>
+            <p class="mt-2 text-white/70 max-w-2xl">
+              Base version uses clean, high-impact bullets. Replace placeholders with final metrics once you confirm exact numbers.
+            </p>
+          </div>
+          <span class="hidden sm:inline-flex mono text-[11px] text-white/55">Tip: we can “pin” sections later for Apple-like scroll narrative</span>
+        </div>
+
+        <div class="mt-6 grid gap-4 lg:grid-cols-12">
+          <!-- Timeline column -->
+          <div class="lg:col-span-8 glass rounded-3xl p-6 sm:p-8 neon-ring">
+            <div class="timeline space-y-6">
+              <!-- Role 1 (placeholder) -->
+              <div class="node">
+                <div class="dot"></div>
+                <div class="glass-strong rounded-3xl p-5 sm:p-6 hover-lift">
+                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                    <div>
+                      <div class="text-xl font-bold">Automation Engineer — Robotics</div>
+                      <div class="mt-1 text-white/70">Futaba Corporation of America • Huntsville, AL</div>
+                    </div>
+                    <div class="mono text-[12px] text-white/60">Mar 2025 – Present</div>
+                  </div>
+
+                  <div class="mt-4 mono text-[11px] text-white/60">IMPACT</div>
+                  <ul class="mt-2 space-y-2 text-sm text-white/75 leading-relaxed">
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Built and integrated inspection + conveyor automation subsystems; focused on reliability, uptime, and sensor-driven sequencing.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Developed robotics tooling for barcode linking automation with vision + arm integration (MyCobot pipeline).</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Deployed field-ready behaviors: safety interlocks, sensor fusion, and robust state-machine logic.</span></li>
+                  </ul>
+
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Sensors</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Conveyors</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Vision</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Integration</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Role 2 (placeholder) -->
+              <div class="node">
+                <div class="dot" style="border-color: rgba(46,102,255,0.35); background: rgba(46,102,255,0.12);"></div>
+                <div class="glass-strong rounded-3xl p-5 sm:p-6 hover-lift">
+                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                    <div>
+                      <div class="text-xl font-bold">Robotics / Engineering Co-op (Placeholder)</div>
+                      <div class="mt-1 text-white/70">Company Name • Location</div>
+                    </div>
+                    <div class="mono text-[12px] text-white/60">Work Term #2</div>
+                  </div>
+
+                  <div class="mt-4 mono text-[11px] text-white/60">IMPACT</div>
+                  <ul class="mt-2 space-y-2 text-sm text-white/75 leading-relaxed">
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Replace with role bullets from resume (3–5 max; quantified where possible).</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Emphasize shipped systems, latency reductions, throughput gains, or reliability improvements.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Note tech stack + integration complexity (hardware + software).</span></li>
+                  </ul>
+
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">ROS</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Python</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">C++</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">CV</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Role 3 (placeholder) -->
+              <div class="node">
+                <div class="dot"></div>
+                <div class="glass-strong rounded-3xl p-5 sm:p-6 hover-lift">
+                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                    <div>
+                      <div class="text-xl font-bold">Engineering Intern / Research Assistant (Placeholder)</div>
+                      <div class="mt-1 text-white/70">Company / Lab • Location</div>
+                    </div>
+                    <div class="mono text-[12px] text-white/60">Work Term #3</div>
+                  </div>
+
+                  <div class="mt-4 mono text-[11px] text-white/60">IMPACT</div>
+                  <ul class="mt-2 space-y-2 text-sm text-white/75 leading-relaxed">
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Replace with role bullets from resume (3–5 max).</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Focus on deep technical wins: algorithmic improvements, experimental results, performance metrics.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Keep it punchy and senior-level: outcome + scope + complexity.</span></li>
+                  </ul>
+
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Perception</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Controls</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Deployment</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side “work summary” -->
+          <div class="lg:col-span-4 grid gap-4">
+            <div class="glass rounded-3xl p-5 sm:p-6 neon-ring hover:bg-white/5 transition">
+              <div class="mono text-xs text-white/60">CAREER THESIS</div>
+              <div class="mt-2 text-xl font-bold">I ship robotics systems.</div>
+              <p class="mt-2 text-white/70 text-sm leading-relaxed">
+                The difference-maker is the “last 20%”: calibration, failure modes, robustness, and integration details.
+                That’s where I’m strongest.
+              </p>
+              <div class="mt-4 glass-strong rounded-2xl p-4">
+                <div class="mono text-[11px] text-white/60">WHAT HIRING MANAGERS GET</div>
+                <ul class="mt-2 space-y-2 text-sm text-white/75">
+                  <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Systems architecture mindset</span></li>
+                  <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Simulation → real-world delivery</span></li>
+                  <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Comfort with sensors + controls + CV</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-5 sm:p-6 neon-ring hover:bg-white/5 transition">
+              <div class="mono text-xs text-white/60">NAV</div>
+              <div class="mt-2 grid gap-3">
+                <a href="projects.html" class="glass-strong rounded-2xl px-4 py-3 hover-lift block">
+                  <div class="mono text-[11px] text-white/60">NEXT</div>
+                  <div class="mt-1 font-bold text-white/90">Projects Bento Grid</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/projects</div>
+                </a>
+                <a href="index.html" class="glass-strong rounded-2xl px-4 py-3 hover-lift block">
+                  <div class="mono text-[11px] text-white/60">BACK</div>
+                  <div class="mt-1 font-bold text-white/90">Home Command Center</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/home</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Academic timeline (education + evolution) -->
+      <section id="education" class="mt-10 sm:mt-14 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="glass rounded-3xl p-6 sm:p-8 neon-ring">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <div class="mono text-xs text-white/60">ACADEMIC TIMELINE</div>
+              <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Engineering Evolution <span class="text-white/60">—</span> <span style="color:#ccff00">M.S. Robotics</span>
+              </h2>
+              <p class="mt-2 text-white/70 max-w-2xl">
+                This section connects education to the 13+ academic projects on the Projects page, showing progression in perception, navigation, and controls.
+              </p>
+            </div>
+
+            <a href="projects.html#grid" class="hidden sm:inline-flex items-center gap-2 rounded-2xl px-4 py-3 font-semibold glass hover:bg-white/5 transition">
+              <span>Open Academic Bento</span>
+              <span class="mono text-sm" style="color:#2e66ff">→</span>
+            </a>
+          </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-12">
+            <div class="lg:col-span-5 glass-strong rounded-3xl p-5 sm:p-6 hover-lift">
+              <div class="mono text-xs text-white/60">EDUCATION</div>
+              <div class="mt-2 text-xl font-bold">M.S. Robotics</div>
+              <div class="mt-1 text-white/70">Northeastern University</div>
+              <div class="mt-3 mono text-[11px] text-white/60">COURSE SIGNALS</div>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Robot Sensing</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Navigation</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Computer Vision</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass">ML / Deep Nets</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Controls</span>
+              </div>
+              <div class="mt-4 text-sm text-white/70">
+                The Projects page contains the full academic catalog (13+) with detail overlays.
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 grid gap-4">
+              <div class="glass-strong rounded-3xl p-5 sm:p-6 hover-lift">
+                <div class="mono text-xs text-white/60">EVOLUTION TRACK</div>
+                <div class="mt-2 grid gap-3">
+                  <div class="glass rounded-2xl p-4">
+                    <div class="mono text-[11px] text-white/60">PHASE 1</div>
+                    <div class="mt-1 font-bold text-white/90">Classical Vision Foundations</div>
+                    <div class="mt-1 text-sm text-white/70">2D recognition, CBIR, AR calibration, and real-time pipelines.</div>
+                  </div>
+                  <div class="glass rounded-2xl p-4">
+                    <div class="mono text-[11px] text-white/60">PHASE 2</div>
+                    <div class="mt-1 font-bold text-white/90">Deep Learning Perception</div>
+                    <div class="mt-1 text-sm text-white/70">CNNs for driving and gesture recognition + transfer learning for robustness.</div>
+                  </div>
+                  <div class="glass rounded-2xl p-4">
+                    <div class="mono text-[11px] text-white/60">PHASE 3</div>
+                    <div class="mt-1 font-bold text-white/90">Geometry + Optimization</div>
+                    <div class="mt-1 text-sm text-white/70">3D reconstruction and underwater mosaicing with GTSAM factor graphs.</div>
+                  </div>
+                  <div class="glass rounded-2xl p-4">
+                    <div class="mono text-[11px] text-white/60">PHASE 4</div>
+                    <div class="mt-1 font-bold text-white/90">Controls + Sensor Fusion</div>
+                    <div class="mt-1 text-sm text-white/70">MPC/LQR/robust control and Kalman filtering for navigation systems.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-strong rounded-3xl p-5 sm:p-6 hover-lift">
+                <div class="mono text-xs text-white/60">CALL TO ACTION</div>
+                <div class="mt-2 text-xl font-bold">Want the full story?</div>
+                <p class="mt-2 text-sm text-white/70">
+                  Open Projects and click any card to inspect the summary, highlights, and tech stack.
+                </p>
+                <div class="mt-4 flex gap-2">
+                  <a href="projects.html#grid" class="rounded-2xl px-4 py-3 font-semibold text-black hover:brightness-95 transition" style="background:#ccff00">
+                    Open Projects
+                  </a>
+                  <a href="#contact" class="rounded-2xl px-4 py-3 font-semibold glass hover:bg-white/5 transition">
+                    Contact
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="mt-10 sm:mt-14 pb-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-4 lg:grid-cols-12">
+          <div class="lg:col-span-7 glass rounded-3xl p-6 sm:p-8 neon-ring">
+            <div class="mono text-xs text-white/60">CONTACT</div>
+            <h3 class="mt-2 text-2xl font-extrabold tracking-tight">
+              Signal Uplink <span class="text-white/60">—</span> <span style="color:#ccff00">ready</span>
+            </h3>
+            <p class="mt-2 text-white/70">
+              Base interaction: animated beacon + quick actions. Later we can add a full interactive form with validation and motion choreography.
+            </p>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <a class="hover-lift glass-strong rounded-2xl p-4" href="https://www.linkedin.com/in/sujai-r/" target="_blank" rel="noreferrer">
+                <div class="mono text-[11px] text-white/60">LINKEDIN</div>
+                <div class="mt-1 font-bold text-white/90">/in/sujai-r</div>
+                <div class="mt-1 text-sm" style="color:#2e66ff">Open profile ↗</div>
+              </a>
+
+              <button class="hover-lift glass-strong rounded-2xl p-4 text-left" id="copyEmail">
+                <div class="mono text-[11px] text-white/60">EMAIL</div>
+                <div class="mt-1 font-bold text-white/90" id="emailText">your.email@domain.com</div>
+                <div class="mt-1 text-sm" style="color:#2e66ff">Click to copy</div>
+              </button>
+            </div>
+
+            <div class="mt-6 glass-strong rounded-2xl p-4">
+              <div class="mono text-[11px] text-white/60">NOTE</div>
+              <div class="mt-1 text-sm text-white/70">
+                Replace the email placeholder with your real address. If you want, we’ll make this a full interactive Apple-style contact page later.
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 glass rounded-3xl p-6 sm:p-8 neon-ring tilt" id="contactTilt">
+            <div class="tilt-inner">
+              <div class="mono text-xs text-white/60">BEACON</div>
+              <div class="mt-2 text-xl font-bold">Handshake Pulse</div>
+              <p class="mt-2 text-white/70 text-sm">
+                A subtle motion system that sells the “product UI” feel without heavy libraries.
+              </p>
+
+              <div class="mt-5 relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44">
+                <div class="absolute inset-0 opacity-70"
+                  style="background: radial-gradient(circle at 40% 30%, rgba(204,255,0,.16), transparent 55%), radial-gradient(circle at 70% 70%, rgba(46,102,255,.16), transparent 55%);"
+                ></div>
+
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div class="relative h-24 w-24">
+                    <div id="beacon" class="absolute inset-0 rounded-full"
+                      style="background: rgba(204,255,0,.10); box-shadow: 0 0 0 1px rgba(204,255,0,.18), 0 0 50px rgba(204,255,0,.12);"
+                    ></div>
+                    <div class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                      style="background:#ccff00; box-shadow: 0 0 24px rgba(204,255,0,.55);"
+                    ></div>
+                  </div>
+                </div>
+
+                <div id="beaconSweep" class="absolute -left-40 top-0 h-full w-64"
+                  style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.22), transparent); transform: skewX(-18deg);"
+                ></div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between">
+                <div class="mono text-[11px] text-white/60">STATUS</div>
+                <div class="mono text-[11px]" style="color:#ccff00" id="copyStatus">READY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="mt-10 text-center text-white/55 mono text-[11px]">
+          © <span id="year"></span> Sujai Rajan — Mission Log UI
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      // ---------------------------
+      // Motion helper
+      // ---------------------------
+      const FM = window.framerMotion || window.FramerMotion || null;
+      function animateSafe(el, keyframes, options) {
+        try {
+          if (FM && typeof FM.animate === "function") return FM.animate(el, keyframes, options);
+        } catch (_) {}
+        return el.animate(keyframes, options);
+      }
+
+      // Mobile menu
+      const mobileBtn = document.getElementById("mobileBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileBtn?.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Stars
+      const canvas = document.getElementById("stars");
+      const ctx = canvas.getContext("2d");
+      let w, h, stars;
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        stars = Array.from({ length: Math.min(170, Math.floor((w * h) / 15000)) }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          z: Math.random() * 0.8 + 0.2,
+          r: Math.random() * 1.5 + 0.4,
+          vx: (Math.random() * 0.18 + 0.04) * (Math.random() > 0.5 ? 1 : -1),
+          vy: (Math.random() * 0.18 + 0.04) * (Math.random() > 0.5 ? 1 : -1),
+        }));
+      }
+      window.addEventListener("resize", resize);
+      resize();
+      (function tick() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.globalCompositeOperation = "lighter";
+        for (const s of stars) {
+          s.x += s.vx * (0.8 + s.z);
+          s.y += s.vy * (0.8 + s.z);
+          if (s.x < -20) s.x = w + 20;
+          if (s.x > w + 20) s.x = -20;
+          if (s.y < -20) s.y = h + 20;
+          if (s.y > h + 20) s.y = -20;
+
+          const lime = 0.16 + s.z * 0.22;
+          const blue = 0.10 + s.z * 0.20;
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(204,255,0,${lime})`;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(46,102,255,${blue})`;
+          ctx.arc(s.x + 0.6, s.y + 0.3, Math.max(0.7, s.r * 0.6), 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalCompositeOperation = "source-over";
+        requestAnimationFrame(tick);
+      })();
+
+      // Beacon sweep + pulse
+      const beaconSweep = document.getElementById("beaconSweep");
+      const beacon = document.getElementById("beacon");
+      if (beaconSweep) {
+        animateSafe(
+          beaconSweep,
+          [{ transform: "translateX(-260px) skewX(-18deg)" }, { transform: "translateX(520px) skewX(-18deg)" }],
+          { duration: 2200, iterations: Infinity, easing: "cubic-bezier(0.2,0.8,0.2,1)" }
+        );
+      }
+      if (beacon) {
+        animateSafe(
+          beacon,
+          [
+            { transform: "scale(0.88)", opacity: 0.75 },
+            { transform: "scale(1.08)", opacity: 0.95 },
+            { transform: "scale(0.92)", opacity: 0.8 },
+          ],
+          { duration: 1700, iterations: Infinity, easing: "ease-in-out" }
+        );
+      }
+
+      // Tilt panel
+      function attachTilt(containerId, strength = 10) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        const inner = el.querySelector(".tilt-inner");
+        if (!inner) return;
+
+        function onMove(e) {
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          const rx = (-y * strength).toFixed(2);
+          const ry = (x * strength).toFixed(2);
+          inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        }
+        function onLeave() {
+          inner.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
+        }
+
+        el.addEventListener("mousemove", onMove);
+        el.addEventListener("mouseleave", onLeave);
+      }
+      attachTilt("tiltPanel", 10);
+      attachTilt("contactTilt", 12);
+
+      // Copy email micro-interaction
+      const copyBtn = document.getElementById("copyEmail");
+      const emailText = document.getElementById("emailText");
+      const copyStatus = document.getElementById("copyStatus");
+
+      copyBtn?.addEventListener("click", async () => {
+        const email = emailText?.textContent?.trim() || "";
+        if (!email || email.includes("your.email")) return;
+
+        try {
+          await navigator.clipboard.writeText(email);
+          copyStatus.textContent = "COPIED";
+          copyStatus.style.color = "#ccff00";
+
+          animateSafe(
+            copyStatus,
+            [{ transform: "translateY(0)", opacity: 0.7 }, { transform: "translateY(-3px)", opacity: 1 }, { transform: "translateY(0)", opacity: 1 }],
+            { duration: 380, easing: "cubic-bezier(0.2,0.8,0.2,1)" }
+          );
+
+          setTimeout(() => {
+            copyStatus.textContent = "READY";
+            copyStatus.style.color = "#ccff00";
+          }, 1200);
+        } catch (e) {
+          copyStatus.textContent = "DENIED";
+          copyStatus.style.color = "#2e66ff";
+        }
+      });
+    </script>
+  </body>
+</html>
