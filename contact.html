@@ -1,0 +1,755 @@
+<!-- contact.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sujai Rajan — Contact | Signal Uplink</title>
+
+    <!-- Tailwind CSS v4 (Play CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-obsidian: #050505;
+        --color-cyberlime: #ccff00;
+        --color-cobalt: #2e66ff;
+        --color-glass: rgba(255, 255, 255, 0.06);
+        --color-glass-strong: rgba(255, 255, 255, 0.09);
+        --color-stroke: rgba(255, 255, 255, 0.12);
+        --shadow-neon: 0 0 0 1px rgba(204, 255, 0, 0.18), 0 0 40px rgba(204, 255, 0, 0.08),
+          0 0 120px rgba(46, 102, 255, 0.06);
+        --shadow-neon-strong: 0 0 0 1px rgba(204, 255, 0, 0.28), 0 0 60px rgba(204, 255, 0, 0.12),
+          0 0 160px rgba(46, 102, 255, 0.1);
+      }
+
+      html,
+      body {
+        background: var(--color-obsidian);
+        color: white;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+      }
+
+      .glass {
+        background: var(--color-glass);
+        border: 1px solid var(--color-stroke);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      .glass-strong {
+        background: var(--color-glass-strong);
+        border: 1px solid var(--color-stroke);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .neon-ring {
+        box-shadow: var(--shadow-neon);
+      }
+
+      .neon-ring-strong {
+        box-shadow: var(--shadow-neon-strong);
+      }
+
+      .hover-lift {
+        transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease, background 280ms ease;
+        will-change: transform, box-shadow;
+      }
+      .hover-lift:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-neon-strong);
+        border-color: rgba(204, 255, 0, 0.28);
+        background: rgba(255, 255, 255, 0.075);
+      }
+
+      .mesh {
+        background:
+          radial-gradient(900px 620px at 12% 18%, rgba(204, 255, 0, 0.16), transparent 55%),
+          radial-gradient(860px 590px at 82% 20%, rgba(46, 102, 255, 0.18), transparent 55%),
+          radial-gradient(760px 560px at 66% 86%, rgba(204, 255, 0, 0.10), transparent 55%),
+          radial-gradient(900px 700px at 22% 80%, rgba(46, 102, 255, 0.10), transparent 55%),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent 22%, rgba(255, 255, 255, 0.02));
+        filter: saturate(1.12) contrast(1.05);
+        animation: meshShift 17s ease-in-out infinite alternate;
+        transform: translateZ(0);
+      }
+      @keyframes meshShift {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+          filter: saturate(1.05) contrast(1.05);
+        }
+        100% {
+          transform: translate3d(0, -10px, 0) scale(1.02);
+          filter: saturate(1.25) contrast(1.1);
+        }
+      }
+
+      .scanlines {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 100% 6px;
+        opacity: 0.10;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+
+      .vignette {
+        background: radial-gradient(circle at 50% 10%, transparent 0%, rgba(0, 0, 0, 0.74) 62%, rgba(0, 0, 0, 0.92) 100%);
+        pointer-events: none;
+      }
+
+      .tilt {
+        transform-style: preserve-3d;
+        perspective: 900px;
+      }
+      .tilt > .tilt-inner {
+        transform: translateZ(0);
+        will-change: transform;
+      }
+
+      .field {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .field:focus-within {
+        border-color: rgba(204, 255, 0, 0.3);
+        box-shadow: 0 0 0 1px rgba(204, 255, 0, 0.15), 0 0 40px rgba(204, 255, 0, 0.07);
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .mesh {
+          animation: none !important;
+        }
+        .hover-lift {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen">
+    <!-- Background -->
+    <div class="fixed inset-0 -z-50">
+      <div class="absolute inset-0 mesh"></div>
+      <div class="absolute inset-0 scanlines"></div>
+      <div class="absolute inset-0 vignette"></div>
+      <canvas id="particles" class="absolute inset-0 opacity-55"></canvas>
+    </div>
+
+    <!-- Fixed Nav -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mt-4 glass rounded-2xl">
+          <div class="flex items-center justify-between px-4 py-3 sm:px-5">
+            <a href="index.html" class="group flex items-center gap-3">
+              <div class="h-10 w-10 rounded-xl glass-strong neon-ring flex items-center justify-center" aria-hidden="true">
+                <div class="h-2.5 w-2.5 rounded-full" style="background:#ccff00; box-shadow: 0 0 22px rgba(204,255,0,.45)"></div>
+              </div>
+              <div class="leading-tight">
+                <div class="text-sm font-semibold tracking-wide">SUJAI RAJAN</div>
+                <div class="mono text-[11px] text-white/60 group-hover:text-white/80 transition">SIGNAL UPLINK</div>
+              </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-2">
+              <a href="index.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition">Home</a>
+              <a href="projects.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition">Projects</a>
+              <a href="about.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition">Experience</a>
+              <a href="contact.html" class="px-3 py-2 rounded-xl text-sm font-medium text-white/90 hover:text-white hover:bg-white/5 transition">Contact</a>
+
+              <a
+                href="#uplink"
+                class="ml-2 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-black"
+                style="background:#ccff00"
+              >
+                <span>Open Uplink</span>
+                <span class="mono text-[12px]">↓</span>
+              </a>
+            </div>
+
+            <button id="mobileBtn" class="md:hidden rounded-xl px-3 py-2 glass hover:bg-white/5 transition" aria-label="Open menu">
+              <span class="mono text-xs text-white/80">MENU</span>
+            </button>
+          </div>
+
+          <div id="mobileMenu" class="hidden border-t border-white/10 px-4 py-3">
+            <div class="grid gap-2">
+              <a href="index.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/5 transition">Home</a>
+              <a href="projects.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/5 transition">Projects</a>
+              <a href="about.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/70 hover:bg-white/5 transition">Experience</a>
+              <a href="contact.html" class="rounded-xl px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5 transition">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-28 sm:pt-32">
+      <!-- Hero -->
+      <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-7 glass rounded-3xl p-6 sm:p-8 neon-ring">
+            <div class="flex items-center gap-3">
+              <div class="mono text-xs text-white/60">COMMS CHANNEL</div>
+              <div class="h-[1px] flex-1 bg-white/10"></div>
+              <div class="mono text-xs" style="color:#ccff00" id="headerStatus">READY</div>
+            </div>
+
+            <h1 class="mt-5 text-3xl sm:text-5xl font-extrabold tracking-tight">
+              Contact <span style="color:#ccff00">Signal Uplink</span>
+            </h1>
+            <p class="mt-3 text-white/75 text-base sm:text-lg leading-relaxed">
+              This is a fast, interactive contact interface. No fluff — just a clean handshake and a message payload.
+            </p>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+              <div class="glass-strong rounded-2xl px-4 py-4">
+                <div class="mono text-[11px] text-white/60">SIGNAL</div>
+                <div class="mt-1 text-lg font-bold"><span style="color:#ccff00" id="signalPct">92</span><span class="text-white/80">%</span></div>
+                <div class="mt-1 text-sm text-white/65">stability estimate</div>
+              </div>
+              <div class="glass-strong rounded-2xl px-4 py-4">
+                <div class="mono text-[11px] text-white/60">LATENCY</div>
+                <div class="mt-1 text-lg font-bold"><span class="text-white/90" id="latencyMs">18</span><span class="text-white/60">ms</span></div>
+                <div class="mt-1 text-sm text-white/65">uplink ping</div>
+              </div>
+              <div class="glass-strong rounded-2xl px-4 py-4">
+                <div class="mono text-[11px] text-white/60">HANDSHAKE</div>
+                <div class="mt-1 text-lg font-bold" style="color:#2e66ff" id="handshake">IDLE</div>
+                <div class="mt-1 text-sm text-white/65">secure channel</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Beacon + Actions -->
+          <div class="lg:col-span-5 grid gap-4">
+            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring tilt" id="beaconTilt">
+              <div class="tilt-inner">
+                <div class="mono text-xs text-white/60">BEACON</div>
+                <div class="mt-2 text-xl font-bold">Handshake Pulse</div>
+                <p class="mt-2 text-white/70 text-sm">
+                  Hover or click actions to trigger channel activity.
+                </p>
+
+                <div class="mt-5 relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44">
+                  <div class="absolute inset-0 opacity-70"
+                    style="background: radial-gradient(circle at 40% 30%, rgba(204,255,0,.16), transparent 55%), radial-gradient(circle at 70% 70%, rgba(46,102,255,.16), transparent 55%);"
+                  ></div>
+
+                  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div class="relative h-24 w-24">
+                      <div id="beacon" class="absolute inset-0 rounded-full"
+                        style="background: rgba(204,255,0,.10); box-shadow: 0 0 0 1px rgba(204,255,0,.18), 0 0 50px rgba(204,255,0,.12);"
+                      ></div>
+                      <div class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                        style="background:#ccff00; box-shadow: 0 0 24px rgba(204,255,0,.55);"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div id="beaconSweep" class="absolute -left-40 top-0 h-full w-64"
+                    style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.22), transparent); transform: skewX(-18deg);"
+                  ></div>
+
+                  <div class="absolute left-4 top-4 glass-strong rounded-xl px-3 py-2">
+                    <div class="mono text-[11px] text-white/60">CHANNEL</div>
+                    <div class="mono text-[11px]" style="color:#ccff00">UPLINK / ACTIVE</div>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                  <a
+                    class="hover-lift glass-strong rounded-2xl p-4"
+                    href="https://www.linkedin.com/in/sujai-r/"
+                    target="_blank"
+                    rel="noreferrer"
+                    id="btnLinkedIn"
+                  >
+                    <div class="mono text-[11px] text-white/60">LINKEDIN</div>
+                    <div class="mt-1 font-bold text-white/90">Open Profile</div>
+                    <div class="mt-1 text-sm" style="color:#2e66ff">/in/sujai-r ↗</div>
+                  </a>
+
+                  <button class="hover-lift glass-strong rounded-2xl p-4 text-left" id="copyEmail">
+                    <div class="mono text-[11px] text-white/60">EMAIL</div>
+                    <div class="mt-1 font-bold text-white/90" id="emailText">send2sujai@gmail.com</div>
+                    <div class="mt-1 text-sm" style="color:#2e66ff" id="copyHint">Click to copy</div>
+                  </button>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="mono text-[11px] text-white/60">STATUS</div>
+                  <div class="mono text-[11px]" style="color:#ccff00" id="beaconStatus">READY</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition">
+              <div class="mono text-xs text-white/60">NOTE</div>
+              <div class="mt-2 text-white/75 text-sm leading-relaxed">
+                Replace the email placeholder with your real address. If you want a real backend later, we can wire this to Formspree or Netlify Forms.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Uplink Form -->
+      <section id="uplink" class="mt-10 sm:mt-14 pb-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-4 lg:grid-cols-12">
+          <div class="lg:col-span-8 glass rounded-3xl p-6 sm:p-8 neon-ring">
+            <div class="flex items-end justify-between gap-4">
+              <div>
+                <div class="mono text-xs text-white/60">TRANSMISSION CONSOLE</div>
+                <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Compose Message <span class="text-white/60">—</span> <span style="color:#ccff00">payload</span>
+                </h2>
+                <p class="mt-2 text-white/70 max-w-2xl">
+                  This sends via your default email client using a generated mailto link (base setup).
+                </p>
+              </div>
+
+              <div class="hidden sm:flex items-center gap-2">
+                <span class="mono text-[11px] text-white/60">MODE</span>
+                <span class="mono text-[11px] rounded-xl px-3 py-1 glass-strong" style="color:#ccff00">SECURE</span>
+              </div>
+            </div>
+
+            <form id="form" class="mt-6 grid gap-4">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="field glass-strong rounded-2xl px-4 py-3">
+                  <div class="mono text-[11px] text-white/60">NAME</div>
+                  <input
+                    id="name"
+                    class="mt-2 w-full bg-transparent outline-none text-sm placeholder:text-white/35"
+                    placeholder="Your name"
+                    autocomplete="name"
+                  />
+                </div>
+
+                <div class="field glass-strong rounded-2xl px-4 py-3">
+                  <div class="mono text-[11px] text-white/60">EMAIL</div>
+                  <input
+                    id="from"
+                    type="email"
+                    class="mt-2 w-full bg-transparent outline-none text-sm placeholder:text-white/35"
+                    placeholder="you@company.com"
+                    autocomplete="email"
+                  />
+                </div>
+              </div>
+
+              <div class="field glass-strong rounded-2xl px-4 py-3">
+                <div class="mono text-[11px] text-white/60">MESSAGE</div>
+                <textarea
+                  id="msg"
+                  rows="6"
+                  class="mt-2 w-full bg-transparent outline-none text-sm placeholder:text-white/35 resize-none"
+                  placeholder="Write your message…"
+                ></textarea>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+                <div class="mono text-[11px] text-white/60">
+                  Packet size: <span id="packet" class="text-white/80">0</span> bytes •
+                  Integrity: <span id="integrity" style="color:#ccff00">OK</span>
+                </div>
+
+                <div class="flex gap-3">
+                  <button
+                    type="button"
+                    id="clear"
+                    class="rounded-2xl px-4 py-3 font-semibold glass hover:bg-white/5 transition"
+                  >
+                    Clear
+                  </button>
+                  <button
+                    type="submit"
+                    id="send"
+                    class="rounded-2xl px-5 py-3 font-semibold text-black hover:brightness-95 transition"
+                    style="background:#ccff00"
+                  >
+                    Transmit →
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <div id="toast" class="hidden mt-5 glass-strong rounded-2xl p-4">
+              <div class="mono text-[11px] text-white/60">TRANSMISSION</div>
+              <div class="mt-1 font-bold text-white/90" id="toastTitle">Prepared mail client.</div>
+              <div class="mt-1 text-sm text-white/70" id="toastBody">If nothing opened, your browser may block mailto links.</div>
+            </div>
+          </div>
+
+          <!-- Right: Live Telemetry -->
+          <div class="lg:col-span-4 grid gap-4">
+            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition">
+              <div class="mono text-xs text-white/60">LIVE TELEMETRY</div>
+
+              <div class="mt-4 grid gap-3">
+                <div class="glass-strong rounded-2xl p-4">
+                  <div class="flex items-center justify-between">
+                    <span class="mono text-[11px] text-white/60">CHANNEL</span>
+                    <span class="mono text-[11px]" style="color:#ccff00" id="chan">UP</span>
+                  </div>
+                  <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
+                    <div id="signalBar" class="h-full rounded-full" style="width: 72%; background: linear-gradient(90deg, rgba(204,255,0,.95), rgba(46,102,255,.7));"></div>
+                  </div>
+                  <div class="mt-2 flex items-center justify-between text-xs text-white/60">
+                    <span class="mono">strength</span>
+                    <span class="mono" id="signalLabel">72%</span>
+                  </div>
+                </div>
+
+                <div class="glass-strong rounded-2xl p-4">
+                  <div class="flex items-center justify-between">
+                    <span class="mono text-[11px] text-white/60">PAYLOAD</span>
+                    <span class="mono text-[11px]" style="color:#2e66ff" id="payloadState">IDLE</span>
+                  </div>
+                  <div class="mt-2 text-sm text-white/70" id="payloadNote">
+                    Start typing to arm the transmission.
+                  </div>
+                </div>
+
+                <div class="glass-strong rounded-2xl p-4">
+                  <div class="mono text-[11px] text-white/60">SHORTCUTS</div>
+                  <div class="mt-2 grid gap-2 text-sm text-white/70">
+                    <div class="flex justify-between"><span class="mono text-[11px]">CTRL+K</span><span>focus message</span></div>
+                    <div class="flex justify-between"><span class="mono text-[11px]">ESC</span><span>clear status</span></div>
+                    <div class="flex justify-between"><span class="mono text-[11px]">ENTER</span><span>transmit (button)</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition">
+              <div class="mono text-xs text-white/60">BACK TO</div>
+              <div class="mt-3 grid gap-3">
+                <a href="projects.html" class="glass-strong rounded-2xl px-4 py-3 hover-lift block">
+                  <div class="mono text-[11px] text-white/60">PROJECTS</div>
+                  <div class="mt-1 font-bold text-white/90">Bento Lab</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/projects</div>
+                </a>
+                <a href="about.html" class="glass-strong rounded-2xl px-4 py-3 hover-lift block">
+                  <div class="mono text-[11px] text-white/60">EXPERIENCE</div>
+                  <div class="mt-1 font-bold text-white/90">Mission Log</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/about</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="mt-10 text-center text-white/55 mono text-[11px]">
+          © <span id="year"></span> Sujai Rajan — Signal Uplink UI
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      // Mobile menu
+      const mobileBtn = document.getElementById("mobileBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileBtn?.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ---------------------------
+      // Particles (lightweight, GitHub-pages friendly)
+      // ---------------------------
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      let w, h, dots;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        const count = Math.min(160, Math.floor((w * h) / 16000));
+        dots = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.5,
+          vx: (Math.random() * 0.28 + 0.08) * (Math.random() > 0.5 ? 1 : -1),
+          vy: (Math.random() * 0.28 + 0.08) * (Math.random() > 0.5 ? 1 : -1),
+          lime: Math.random() > 0.5,
+          a: Math.random() * 0.18 + 0.08,
+        }));
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      (function tick() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.globalCompositeOperation = "lighter";
+        for (const d of dots) {
+          d.x += d.vx;
+          d.y += d.vy;
+          if (d.x < -20) d.x = w + 20;
+          if (d.x > w + 20) d.x = -20;
+          if (d.y < -20) d.y = h + 20;
+          if (d.y > h + 20) d.y = -20;
+
+          ctx.beginPath();
+          ctx.fillStyle = d.lime ? `rgba(204,255,0,${d.a})` : `rgba(46,102,255,${d.a})`;
+          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalCompositeOperation = "source-over";
+        requestAnimationFrame(tick);
+      })();
+
+      // ---------------------------
+      // Beacon sweep + pulse (native)
+      // ---------------------------
+      function animateSafe(el, keyframes, options) {
+        if (!el || !el.animate) return null;
+        return el.animate(keyframes, options);
+      }
+
+      const beaconSweep = document.getElementById("beaconSweep");
+      const beacon = document.getElementById("beacon");
+      if (beaconSweep) {
+        animateSafe(
+          beaconSweep,
+          [{ transform: "translateX(-260px) skewX(-18deg)" }, { transform: "translateX(520px) skewX(-18deg)" }],
+          { duration: 2200, iterations: Infinity, easing: "cubic-bezier(0.2,0.8,0.2,1)" }
+        );
+      }
+      if (beacon) {
+        animateSafe(
+          beacon,
+          [{ transform: "scale(0.88)", opacity: 0.75 }, { transform: "scale(1.08)", opacity: 0.95 }, { transform: "scale(0.92)", opacity: 0.8 }],
+          { duration: 1700, iterations: Infinity, easing: "ease-in-out" }
+        );
+      }
+
+      // ---------------------------
+      // Tilt
+      // ---------------------------
+      function attachTilt(containerId, strength = 10) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        const inner = el.querySelector(".tilt-inner");
+        if (!inner) return;
+
+        function onMove(e) {
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          const rx = (-y * strength).toFixed(2);
+          const ry = (x * strength).toFixed(2);
+          inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        }
+        function onLeave() {
+          inner.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
+        }
+
+        el.addEventListener("mousemove", onMove);
+        el.addEventListener("mouseleave", onLeave);
+      }
+      attachTilt("beaconTilt", 12);
+
+      // ---------------------------
+      // Telemetry simulation
+      // ---------------------------
+      const signalPct = document.getElementById("signalPct");
+      const latencyMs = document.getElementById("latencyMs");
+      const handshake = document.getElementById("handshake");
+      const headerStatus = document.getElementById("headerStatus");
+
+      const signalBar = document.getElementById("signalBar");
+      const signalLabel = document.getElementById("signalLabel");
+      const chan = document.getElementById("chan");
+      const payloadState = document.getElementById("payloadState");
+      const payloadNote = document.getElementById("payloadNote");
+
+      let strength = 72;
+      let latency = 18;
+
+      function tickTelemetry() {
+        strength += (Math.random() - 0.5) * 6;
+        strength = Math.max(55, Math.min(98, strength));
+        latency += (Math.random() - 0.5) * 6;
+        latency = Math.max(10, Math.min(62, latency));
+
+        signalPct.textContent = Math.round(strength);
+        latencyMs.textContent = Math.round(latency);
+
+        signalBar.style.width = `${Math.round(strength)}%`;
+        signalLabel.textContent = `${Math.round(strength)}%`;
+
+        if (strength < 65) {
+          chan.textContent = "DEGRADED";
+          chan.style.color = "#2e66ff";
+        } else {
+          chan.textContent = "UP";
+          chan.style.color = "#ccff00";
+        }
+      }
+      setInterval(tickTelemetry, 900);
+
+      // ---------------------------
+      // Copy email
+      // ---------------------------
+      const copyBtn = document.getElementById("copyEmail");
+      const emailText = document.getElementById("emailText");
+      const copyHint = document.getElementById("copyHint");
+      const beaconStatus = document.getElementById("beaconStatus");
+
+      copyBtn?.addEventListener("click", async () => {
+        const email = emailText.textContent.trim();
+        if (!email || email.includes("your.email")) {
+          beaconStatus.textContent = "SET EMAIL";
+          beaconStatus.style.color = "#2e66ff";
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(email);
+          copyHint.textContent = "Copied ✓";
+          beaconStatus.textContent = "COPIED";
+          beaconStatus.style.color = "#ccff00";
+          headerStatus.textContent = "ACTIVE";
+          headerStatus.style.color = "#ccff00";
+          setTimeout(() => {
+            copyHint.textContent = "Click to copy";
+            beaconStatus.textContent = "READY";
+            beaconStatus.style.color = "#ccff00";
+            headerStatus.textContent = "READY";
+          }, 1200);
+        } catch {
+          copyHint.textContent = "Clipboard blocked";
+          beaconStatus.textContent = "DENIED";
+          beaconStatus.style.color = "#2e66ff";
+        }
+      });
+
+      // ---------------------------
+      // Form logic (mailto base)
+      // ---------------------------
+      const form = document.getElementById("form");
+      const nameEl = document.getElementById("name");
+      const fromEl = document.getElementById("from");
+      const msgEl = document.getElementById("msg");
+      const clearBtn = document.getElementById("clear");
+      const toast = document.getElementById("toast");
+      const toastTitle = document.getElementById("toastTitle");
+      const toastBody = document.getElementById("toastBody");
+      const packet = document.getElementById("packet");
+      const integrity = document.getElementById("integrity");
+
+      function updatePayload() {
+        const text = `${nameEl.value}\n${fromEl.value}\n${msgEl.value}`;
+        const bytes = new Blob([text]).size;
+        packet.textContent = bytes;
+
+        if (bytes > 2200) {
+          integrity.textContent = "LARGE";
+          integrity.style.color = "#2e66ff";
+        } else {
+          integrity.textContent = "OK";
+          integrity.style.color = "#ccff00";
+        }
+
+        if (msgEl.value.trim().length > 0) {
+          payloadState.textContent = "ARMED";
+          payloadState.style.color = "#ccff00";
+          payloadNote.textContent = "Payload ready. Transmit when ready.";
+        } else {
+          payloadState.textContent = "IDLE";
+          payloadState.style.color = "#2e66ff";
+          payloadNote.textContent = "Start typing to arm the transmission.";
+        }
+      }
+      ["input", "change"].forEach((evt) => {
+        nameEl.addEventListener(evt, updatePayload);
+        fromEl.addEventListener(evt, updatePayload);
+        msgEl.addEventListener(evt, updatePayload);
+      });
+      updatePayload();
+
+      clearBtn.addEventListener("click", () => {
+        nameEl.value = "";
+        fromEl.value = "";
+        msgEl.value = "";
+        toast.classList.add("hidden");
+        payloadState.textContent = "IDLE";
+        payloadState.style.color = "#2e66ff";
+        payloadNote.textContent = "Start typing to arm the transmission.";
+        handshake.textContent = "IDLE";
+        handshake.style.color = "#2e66ff";
+        headerStatus.textContent = "READY";
+        updatePayload();
+      });
+
+      // Keyboard shortcut
+      window.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          msgEl.focus();
+        }
+        if (e.key === "Escape") {
+          toast.classList.add("hidden");
+          beaconStatus.textContent = "READY";
+          beaconStatus.style.color = "#ccff00";
+        }
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const to = emailText.textContent.trim();
+        if (!to || to.includes("your.email")) {
+          toast.classList.remove("hidden");
+          toastTitle.textContent = "Set your email first.";
+          toastBody.textContent = "Replace the placeholder email in the page source (emailText).";
+          beaconStatus.textContent = "SET EMAIL";
+          beaconStatus.style.color = "#2e66ff";
+          return;
+        }
+
+        const name = nameEl.value.trim() || "Anonymous";
+        const from = fromEl.value.trim() || "no-reply";
+        const msg = msgEl.value.trim();
+
+        handshake.textContent = "HANDSHAKE";
+        handshake.style.color = "#ccff00";
+        headerStatus.textContent = "TRANSMITTING";
+        headerStatus.style.color = "#ccff00";
+
+        // Prepare mailto
+        const subject = encodeURIComponent(`Portfolio Contact — ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nFrom: ${from}\n\n${msg || "(No message provided)"}\n`);
+        const href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
+
+        toast.classList.remove("hidden");
+        toastTitle.textContent = "Prepared mail client.";
+        toastBody.textContent = "If nothing opened, your browser may block mailto links.";
+
+        // Fire
+        window.location.href = href;
+
+        setTimeout(() => {
+          handshake.textContent = "SENT";
+          handshake.style.color = "#ccff00";
+          headerStatus.textContent = "READY";
+        }, 850);
+      });
+    </script>
+  </body>
+</html>
