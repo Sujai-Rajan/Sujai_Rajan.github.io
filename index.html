@@ -393,15 +393,32 @@
 
             <!-- Robot visual strip (lightweight “live” animation) -->
             <div class="mt-6 glass rounded-3xl p-5 sm:p-6 neon-ring hover:bg-white/5 transition">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="mono text-xs text-white/60">ROBOT VISUALIZATION</div>
-                  <div class="mt-1 text-lg font-bold">Kinematic Ghost</div>
-                  <div class="mt-1 text-sm text-white/70">
-                    CSS-driven 3D transform “humanoid” rig placeholder (swap with your real media later).
-                  </div>
+              <div class="mt-4 rounded-2xl overflow-hidden border border-white/10 bg-black/40">
+                  <video
+                    class="w-full h-56 object-cover"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                  >
+                    <source src="./assets/robots/stretch.webm" type="video/webm" />
+                  </video>
                 </div>
-                <a href="projects.html" class="mono text-xs" style="color:#2e66ff">see builds ↗</a>
+
+                <div class="flex items-start justify-between gap-4 mt-4">
+                  <div>
+                    <div class="mono text-xs text-white/60">ROBOT VISUALIZATION</div>
+                    <div class="mt-1 text-lg font-bold">Stretch Autonomous System</div>
+                    <div class="mt-1 text-sm text-white/70">
+                      Real-world autonomous navigation and perception demo (simulation → hardware).
+                    </div>
+                  </div>
+
+                  <a href="project-detail.html?id=stretch" class="mono text-xs" style="color:#2e66ff">
+                    see builds ↗
+                  </a>
+                </div>
               </div>
 
               <div class="mt-4 relative h-44 overflow-hidden rounded-2xl border border-white/10 bg-black/40">
