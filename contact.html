@@ -202,8 +202,10 @@
     <main class="pt-28 sm:pt-32">
       <!-- Hero -->
       <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-6 lg:grid-cols-12">
-          <div class="lg:col-span-7 glass rounded-3xl p-6 sm:p-8 neon-ring">
+        <div class="grid gap-6 lg:grid-cols-12 lg:auto-rows-fr">
+
+          <div class="lg:col-span-8 glass rounded-3xl p-6 sm:p-8 neon-ring h-full flex flex-col">
+
             <div class="flex items-center gap-3">
               <div class="mono text-xs text-white/60">COMMS CHANNEL</div>
               <div class="h-[1px] flex-1 bg-white/10"></div>
@@ -214,65 +216,10 @@
               Contact <span style="color:#ccff00">Signal Uplink</span>
             </h1>
             <p class="mt-3 text-white/75 text-base sm:text-lg leading-relaxed">
-              This is a fast, interactive contact interface. No fluff — just a clean handshake and a message payload.
+              Fastest way to reach me: email or LinkedIn. The form below opens your mail client with the message pre-filled.
             </p>
 
-            <div class="mt-6 grid gap-3 sm:grid-cols-3">
-              <div class="glass-strong rounded-2xl px-4 py-4">
-                <div class="mono text-[11px] text-white/60">SIGNAL</div>
-                <div class="mt-1 text-lg font-bold"><span style="color:#ccff00" id="signalPct">92</span><span class="text-white/80">%</span></div>
-                <div class="mt-1 text-sm text-white/65">stability estimate</div>
-              </div>
-              <div class="glass-strong rounded-2xl px-4 py-4">
-                <div class="mono text-[11px] text-white/60">LATENCY</div>
-                <div class="mt-1 text-lg font-bold"><span class="text-white/90" id="latencyMs">18</span><span class="text-white/60">ms</span></div>
-                <div class="mt-1 text-sm text-white/65">uplink ping</div>
-              </div>
-              <div class="glass-strong rounded-2xl px-4 py-4">
-                <div class="mono text-[11px] text-white/60">HANDSHAKE</div>
-                <div class="mt-1 text-lg font-bold" style="color:#2e66ff" id="handshake">IDLE</div>
-                <div class="mt-1 text-sm text-white/65">secure channel</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: Beacon + Actions -->
-          <div class="lg:col-span-5 grid gap-4">
-            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring tilt" id="beaconTilt">
-              <div class="tilt-inner">
-                <div class="mono text-xs text-white/60">BEACON</div>
-                <div class="mt-2 text-xl font-bold">Handshake Pulse</div>
-                <p class="mt-2 text-white/70 text-sm">
-                  Hover or click actions to trigger channel activity.
-                </p>
-
-                <div class="mt-5 relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44">
-                  <div class="absolute inset-0 opacity-70"
-                    style="background: radial-gradient(circle at 40% 30%, rgba(204,255,0,.16), transparent 55%), radial-gradient(circle at 70% 70%, rgba(46,102,255,.16), transparent 55%);"
-                  ></div>
-
-                  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div class="relative h-24 w-24">
-                      <div id="beacon" class="absolute inset-0 rounded-full"
-                        style="background: rgba(204,255,0,.10); box-shadow: 0 0 0 1px rgba(204,255,0,.18), 0 0 50px rgba(204,255,0,.12);"
-                      ></div>
-                      <div class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                        style="background:#ccff00; box-shadow: 0 0 24px rgba(204,255,0,.55);"
-                      ></div>
-                    </div>
-                  </div>
-
-                  <div id="beaconSweep" class="absolute -left-40 top-0 h-full w-64"
-                    style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.22), transparent); transform: skewX(-18deg);"
-                  ></div>
-
-                  <div class="absolute left-4 top-4 glass-strong rounded-xl px-3 py-2">
-                    <div class="mono text-[11px] text-white/60">CHANNEL</div>
-                    <div class="mono text-[11px]" style="color:#ccff00">UPLINK / ACTIVE</div>
-                  </div>
-                </div>
-
-                <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                <div class="mt-5 grid gap-3 sm:grid-cols-3">
                   <a
                     class="hover-lift glass-strong rounded-2xl p-4"
                     href="https://www.linkedin.com/in/sujai-r/"
@@ -290,38 +237,65 @@
                     <div class="mt-1 font-bold text-white/90" id="emailText">send2sujai@gmail.com</div>
                     <div class="mt-1 text-sm" style="color:#2e66ff" id="copyHint">Click to copy</div>
                   </button>
+                  <a class="hover-lift glass-strong rounded-2xl p-4" href="./assets/Sujai Rajan Resume.pdf" target="_blank" rel="noreferrer">
+                    <div class="mono text-[11px] text-white/60">RESUME</div>
+                    <div class="mt-1 font-bold text-white/90">PDF Download</div>
+                    <div class="mt-1 text-sm" style="color:#2e66ff">Open ↗</div>
+                  </a>
+
+
+
+                </div>
+          </div>
+
+
+          <!-- Right: Live Telemetry -->
+          <div class="lg:col-span-4 glass rounded-3xl p-6 sm:p-8 neon-ring h-full flex flex-col">
+
+            <div class="glass rounded-3xl p-6 sm:p-12 neon-ring hover:bg-white/5 transition tilt h-full" id="telemetryTilt">
+            <div class="tilt-inner">
+              <div class="mono text-xs text-white/60">LIVE TELEMETRY</div>
+
+              <div class="mt-4 grid gap-3">
+                <div class="glass-strong rounded-2xl p-4">
+                  <div class="flex items-center justify-between">
+                    <span class="mono text-[11px] text-white/60">CHANNEL</span>
+                    <span class="mono text-[11px]" style="color:#ccff00" id="chan">UP</span>
+                  </div>
+                  <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
+                    <div id="signalBar" class="h-full rounded-full" style="width: 72%; background: linear-gradient(90deg, rgba(204,255,0,.95), rgba(46,102,255,.7));"></div>
+                  </div>
+                  <div class="mt-2 flex items-center justify-between text-xs text-white/60">
+                    <span class="mono">strength</span>
+                    <span class="mono" id="signalLabel">72%</span>
+                  </div>
                 </div>
 
-                <div class="mt-4 flex items-center justify-between">
-                  <div class="mono text-[11px] text-white/60">STATUS</div>
-                  <div class="mono text-[11px]" style="color:#ccff00" id="beaconStatus">READY</div>
+                <div class="glass-strong rounded-2xl p-4">
+                  <div class="mono text-[11px] text-white/60">SHORTCUTS</div>
+                  <div class="mt-2 grid gap-2 text-sm text-white/70">
+                    <div class="flex justify-between"><span class="mono text-[11px]">CTRL+K</span><span>focus message</span></div>
+                    <div class="flex justify-between"><span class="mono text-[11px]">ESC</span><span>clear status</span></div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition">
-              <div class="mono text-xs text-white/60">NOTE</div>
-              <div class="mt-2 text-white/75 text-sm leading-relaxed">
-                Replace the email placeholder with your real address. If you want a real backend later, we can wire this to Formspree or Netlify Forms.
-              </div>
             </div>
+
           </div>
         </div>
-      </section>
-
+          
       <!-- Uplink Form -->
-      <section id="uplink" class="mt-10 sm:mt-14 pb-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-4 lg:grid-cols-12">
-          <div class="lg:col-span-8 glass rounded-3xl p-6 sm:p-8 neon-ring">
+      <section id="uplink" class="mt-10 sm:mt-10 pb-10 mx-auto max-w-7xl px-2 sm:px-2 lg:px-1">
+        <div class="grid gap-4 lg:grid-cols-12 lg:auto-rows-fr">
+          <div class="lg:col-span-8 glass rounded-3xl p-6 sm:p-8 neon-ring h-full flex flex-col">
             <div class="flex items-end justify-between gap-4">
               <div>
                 <div class="mono text-xs text-white/60">TRANSMISSION CONSOLE</div>
                 <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
                   Compose Message <span class="text-white/60">—</span> <span style="color:#ccff00">payload</span>
                 </h2>
-                <p class="mt-2 text-white/70 max-w-2xl">
-                  This sends via your default email client using a generated mailto link (base setup).
-                </p>
+
               </div>
 
               <div class="hidden sm:flex items-center gap-2">
@@ -330,8 +304,9 @@
               </div>
             </div>
 
-            <form id="form" class="mt-6 grid gap-4">
-              <div class="grid gap-4 sm:grid-cols-2">
+            <form id="form" class="mt-6 grid gap-4 flex-1">
+
+              <div class="grid gap-4 flex-1">
                 <div class="field glass-strong rounded-2xl px-4 py-3">
                   <div class="mono text-[11px] text-white/60">NAME</div>
                   <input
@@ -397,64 +372,68 @@
             </div>
           </div>
 
-          <!-- Right: Live Telemetry -->
-          <div class="lg:col-span-4 grid gap-4">
-            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition">
-              <div class="mono text-xs text-white/60">LIVE TELEMETRY</div>
 
-              <div class="mt-4 grid gap-3">
-                <div class="glass-strong rounded-2xl p-4">
-                  <div class="flex items-center justify-between">
-                    <span class="mono text-[11px] text-white/60">CHANNEL</span>
-                    <span class="mono text-[11px]" style="color:#ccff00" id="chan">UP</span>
+
+        <!-- Right: Beacon + Actions -->
+         <div class="lg:col-span-4 glass rounded-3xl p-6 sm:p-8 neon-ring h-full flex flex-col">
+
+            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring tilt h-full" id="beaconTilt">
+
+              <div class="tilt-inner">
+
+
+                <div class="mt-5 relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44">
+                  <div class="absolute inset-0 opacity-70"
+                    style="background: radial-gradient(circle at 40% 30%, rgba(204,255,0,.16), transparent 55%), radial-gradient(circle at 70% 70%, rgba(46,102,255,.16), transparent 55%);"
+                  ></div>
+
+                  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div class="relative h-24 w-24">
+                      <div id="beacon" class="absolute inset-0 rounded-full"
+                        style="background: rgba(204,255,0,.10); box-shadow: 0 0 0 1px rgba(204,255,0,.18), 0 0 50px rgba(204,255,0,.12);"
+                      ></div>
+                      <div class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                        style="background:#ccff00; box-shadow: 0 0 24px rgba(204,255,0,.55);"
+                      ></div>
+                    </div>
                   </div>
-                  <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
-                    <div id="signalBar" class="h-full rounded-full" style="width: 72%; background: linear-gradient(90deg, rgba(204,255,0,.95), rgba(46,102,255,.7));"></div>
-                  </div>
-                  <div class="mt-2 flex items-center justify-between text-xs text-white/60">
-                    <span class="mono">strength</span>
-                    <span class="mono" id="signalLabel">72%</span>
+
+                  <div id="beaconSweep" class="absolute -left-40 top-0 h-full w-64"
+                    style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.22), transparent); transform: skewX(-18deg);"
+                  ></div>
+
+                  <div class="absolute left-4 top-4 glass-strong rounded-xl px-3 py-2">
+                    <div class="mono text-[11px] text-white/60">CHANNEL</div>
+                    <div class="mono text-[11px]" style="color:#ccff00">UPLINK / ACTIVE</div>
                   </div>
                 </div>
 
-                <div class="glass-strong rounded-2xl p-4">
-                  <div class="flex items-center justify-between">
-                    <span class="mono text-[11px] text-white/60">PAYLOAD</span>
-                    <span class="mono text-[11px]" style="color:#2e66ff" id="payloadState">IDLE</span>
-                  </div>
-                  <div class="mt-2 text-sm text-white/70" id="payloadNote">
-                    Start typing to arm the transmission.
-                  </div>
-                </div>
 
-                <div class="glass-strong rounded-2xl p-4">
-                  <div class="mono text-[11px] text-white/60">SHORTCUTS</div>
-                  <div class="mt-2 grid gap-2 text-sm text-white/70">
-                    <div class="flex justify-between"><span class="mono text-[11px]">CTRL+K</span><span>focus message</span></div>
-                    <div class="flex justify-between"><span class="mono text-[11px]">ESC</span><span>clear status</span></div>
-                    <div class="flex justify-between"><span class="mono text-[11px]">ENTER</span><span>transmit (button)</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition">
-              <div class="mono text-xs text-white/60">BACK TO</div>
-              <div class="mt-3 grid gap-3">
-                <a href="projects.html" class="glass-strong rounded-2xl px-4 py-3 hover-lift block">
-                  <div class="mono text-[11px] text-white/60">PROJECTS</div>
-                  <div class="mt-1 font-bold text-white/90">Bento Lab</div>
-                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/projects</div>
-                </a>
-                <a href="about.html" class="glass-strong rounded-2xl px-4 py-3 hover-lift block">
-                  <div class="mono text-[11px] text-white/60">EXPERIENCE</div>
-                  <div class="mt-1 font-bold text-white/90">Mission Log</div>
-                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">/about</div>
-                </a>
+                <div class="mt-6 grid gap-3 sm:grid-cols-2">
+                    <div class="glass-strong rounded-2xl px-4 py-4">
+                      <div class="mono text-[11px] text-white/60">SIGNAL</div>
+                      <div class="mt-1 text-lg font-bold"><span style="color:#ccff00" id="signalPct">92</span><span class="text-white/80">%</span></div>
+                      <div class="mt-1 text-sm text-white/65">stability estimate</div>
+                    </div>
+                    <div class="glass-strong rounded-2xl px-4 py-4">
+                      <div class="mono text-[11px] text-white/60">LATENCY</div>
+                      <div class="mt-1 text-lg font-bold"><span class="text-white/90" id="latencyMs">18</span><span class="text-white/60">ms</span></div>
+                      <div class="mt-1 text-sm text-white/65">uplink ping</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 flex items-center justify-between">
+                    <div class="mono text-[11px] text-white/60">PREFERRED</div>
+                    <div class="mono text-[11px]" style="color:#ccff00">EMAIL → SCHEDULING</div>
+                  </div>
+
               </div>
             </div>
           </div>
         </div>
+      </section>
+
 
         <footer class="mt-10 text-center text-white/55 mono text-[11px]">
           © <span id="year"></span> Sujai Rajan — Signal Uplink UI
@@ -565,6 +544,7 @@
         el.addEventListener("mouseleave", onLeave);
       }
       attachTilt("beaconTilt", 12);
+      attachTilt("telemetryTilt", 8);
 
       // ---------------------------
       // Telemetry simulation
@@ -692,8 +672,10 @@
         payloadState.textContent = "IDLE";
         payloadState.style.color = "#2e66ff";
         payloadNote.textContent = "Start typing to arm the transmission.";
-        handshake.textContent = "IDLE";
-        handshake.style.color = "#2e66ff";
+        if (handshake) {
+          handshake.textContent = "IDLE";
+          handshake.style.color = "#2e66ff";
+        }
         headerStatus.textContent = "READY";
         updatePayload();
       });
