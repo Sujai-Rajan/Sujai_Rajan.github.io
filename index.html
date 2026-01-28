@@ -2,8 +2,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Lottie web component player -->
-    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <!-- Lottie (only lottie-web needed for your current code) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+
+
 
 
     <meta charset="UTF-8" />
@@ -172,6 +175,19 @@
       .tile:hover::after {
         opacity: 1;
       }
+      #beaconAnim svg {
+        transform: scale(1.25);
+        transform-origin: center;
+      }
+      .tilt-inner {
+        transform: translateZ(0);
+      }
+      #contactTilt .hover-lift:hover {
+        transform: translateY(-4px); /* slightly reduced because the whole card is already moving */
+      }
+
+
+
     </style>
   </head>
 
@@ -678,9 +694,9 @@
           <div>
             <div class="mono text-xs text-white/60">CORE SYSTEMS</div>
             <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Command Modules <span class="text-white/60">—</span> <span style="color:#ccff00">fast scan</span>
+              Command Modules <span class="text-white/60">—</span> <span style="color:#ccff00">CORE</span>
             </h2>
-            <p class="mt-2 text-white/70 max-w-2xl">
+            <p class="mt-2 text-white/70 max-w-4xl">
               Three pillars that show up across my builds: perception, navigation, and real-world integration.
             </p>
           </div>
@@ -702,12 +718,12 @@
               </div>
               <div class="mt-3 text-xl font-bold">Perception & Vision</div>
               <p class="mt-2 text-sm text-white/70 leading-relaxed">
-                Targets, features, pose cues, and vision pipelines that hold up outside perfect lighting.
+                Industrial-grade perception pipelines designed for repeatability, lighting variance, and production constraints.
               </p>
               <div class="mt-4 flex flex-wrap gap-2">
                 <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">OpenCV</span>
-                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">YOLO</span>
-                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">Pose</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">Camera Calibration</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">Pose Estimation</span>
               </div>
             </button>
 
@@ -718,17 +734,21 @@
               aria-pressed="false"
             >
               <div class="flex items-center justify-between">
+                
                 <div class="mono text-xs text-white/60">MODULE 02</div>
                 <div class="mono text-xs" style="color:#ccff00">NAV</div>
               </div>
               <div class="mt-3 text-xl font-bold">Localization & Navigation</div>
               <p class="mt-2 text-sm text-white/70 leading-relaxed">
-                SLAM, mapping, localization and planning workflows from sim → hardware constraints.
+                Mapping, localization, and motion planning pipelines that survive the jump from simulation to hardware.
               </p>
               <div class="mt-4 flex flex-wrap gap-2">
                 <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">ROS2</span>
                 <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">SLAM</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">Sensor Fusion</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">Gazebo</span>
                 <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">RViz</span>
+                <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">MoveIt</span>
               </div>
             </button>
 
@@ -744,7 +764,7 @@
               </div>
               <div class="mt-3 text-xl font-bold">Integration & Deployment</div>
               <p class="mt-2 text-sm text-white/70 leading-relaxed">
-                Sensors, timing, I/O, bring-up, debugging — the stuff that decides if a robot ships.
+                Sensors, timing, I/O, bring-up, debugging — the work that decides whether a robot ships or dies on the floor.
               </p>
               <div class="mt-4 flex flex-wrap gap-2">
                 <span class="mono text-[11px] rounded-xl px-2 py-1 glass-strong">Linux</span>
@@ -788,13 +808,14 @@
       <!-- CONTACT (interactive) -->
       <section id="contact" class="mt-10 sm:mt-14 pb-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid gap-4 lg:grid-cols-12">
-          <div class="lg:col-span-7 glass rounded-3xl p-6 sm:p-8 neon-ring">
+          <div class="lg:col-span-12 glass rounded-3xl p-6 sm:p-8 neon-ring tilt" id="contactTilt">
+            <div class="tilt-inner">
             <div class="mono text-xs text-white/60">CONTACT CHANNEL</div>
             <h3 class="mt-2 text-2xl font-extrabold tracking-tight">
               Let’s build something that <span style="color:#ccff00">moves in the real world</span>.
             </h3>
             <p class="mt-2 text-white/70">
-              If you’re hiring for Senior Robotics / Systems roles, I’m strongest where perception + navigation + control meet deployment reality.
+              I build robotics systems that ship — where perception, navigation, and deployment meet real-world constraints.
             </p>
 
             <div class="mt-6 grid gap-3 sm:grid-cols-2">
@@ -809,67 +830,19 @@
                 <div class="mt-1 text-sm" style="color:#2e66ff">Open profile ↗</div>
               </a>
 
-              <a class="hover-lift glass-strong rounded-2xl p-4" href="projects.html">
-                <div class="mono text-[11px] text-white/60">PROJECTS</div>
-                <div class="mt-1 font-bold text-white/90">Bento Lab</div>
-                <div class="mt-1 text-sm" style="color:#2e66ff">Browse grid ↗</div>
+              <a
+                class="hover-lift glass-strong rounded-2xl p-4"
+                href="mailto:YOUR_EMAIL@domain.com?subject=Robotics%20Role%20—%20Portfolio&body=Hi%20Sujai%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect."
+              >
+                <div class="mono text-[11px] text-white/60">EMAIL</div>
+                <div class="mt-1 font-bold text-white/90">send2sujai@gmail.com</div>
+                <div class="mt-1 text-sm" style="color:#2e66ff">Send message ↗</div>
               </a>
-            </div>
 
-            <div class="mt-6 glass-strong rounded-2xl p-4">
-              <div class="mono text-[11px] text-white/60">NOTE</div>
-              <div class="mt-1 text-sm text-white/70">
-                Email + downloadable resume buttons will be wired on the Experience page. This home page is the “scan-fast” command view.
-              </div>
+            </div>
             </div>
           </div>
 
-          <div class="lg:col-span-5 glass rounded-3xl p-6 sm:p-8 neon-ring tilt" id="contactTilt">
-            <div class="tilt-inner">
-              <div class="mono text-xs text-white/60">MICRO-INTERACTION</div>
-              <div class="mt-2 text-xl font-bold">Signal Beacon</div>
-              <p class="mt-2 text-white/70 text-sm">
-                Hover/tilt this panel. The beacon pulse reacts like a “handoff” animation.
-              </p>
-              
-              <div class="mt-5 relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 h-44">
-                <!-- soft background glow -->
-                <div
-                  class="absolute inset-0 opacity-70"
-                  style="background: radial-gradient(circle at 40% 30%, rgba(204,255,0,.14), transparent 58%),
-                        radial-gradient(circle at 70% 70%, rgba(46,102,255,.14), transparent 58%);"
-                ></div>
-
-                <!-- Lottie animation (becon) -->
-                <div class="absolute inset-0 grid place-items-center">
-                  <lottie-player
-                    id="beconAnim"
-                    src="./assets/anim/becon.json"
-                    background="transparent"
-                    speed="1"
-                    loop
-                    autoplay
-                    style="width: 220px; height: 220px;"
-                  ></lottie-player>
-                </div>
-
-                <!-- subtle scan sweep (optional, keeps your vibe) -->
-                <div
-                  id="beaconSweep"
-                  class="absolute -left-40 top-0 h-full w-64"
-                  style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.18), transparent); transform: skewX(-18deg);"
-                ></div>
-              </div>
-
-
-
-
-              <div class="mt-4 flex items-center justify-between">
-                <div class="mono text-[11px] text-white/60">STATUS</div>
-                <div class="mono text-[11px]" style="color:#ccff00">READY</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <footer class="mt-10 text-center text-white/55 mono text-[11px]">
@@ -1137,42 +1110,44 @@
         const coreData = {
           perception: {
             title: "Perception & Vision",
-            desc: "Vision and perception pipelines designed to stay reliable under real lighting, motion blur, and production constraints.",
+            desc: "Designing vision systems that remain stable under glare, motion, and imperfect geometry — from simulation to factory floors.",
             caps: [
-              "Object detection + feature extraction for repeatable targets",
-              "Pose cues / camera geometry for alignment and verification",
-              "2D→3D reasoning when needed (stereo / point cloud)",
+              "Feature extraction, pose estimation, and geometry-aware alignment",
+              "Camera calibration, distortion correction, and repeatable targeting",
+              "2D → 3D reasoning using stereo, depth, and point clouds when required"
             ],
             exampleTitle: "Vision-guided barcode linking on PCB panels",
             exampleBody:
-              "Camera-based targeting and repeatable acquisition to link top/bottom identifiers with production-style I/O and handoff logic.",
-            stack: ["OpenCV", "YOLO", "Python", "ROS2", "Camera Calibration", "Pose Estimation", "Open3D"],
+              "Designed and deployed production vision systems using ROS2, OpenCV, and 8K cameras to link PCB identifiers across inspection stages. Handled glare, depth variation, and tight tolerances while achieving 100% traceability and eliminating manual scan errors.",
+            stack: ["OpenCV", "ROS2", "Python", "Camera Calibration", "YOLO", "Open3D", "GTSAM", "Cameras", "Linux", "Proximity Sensors", "Safety Sensors"],
+
+
           },
           nav: {
             title: "Localization & Navigation",
-            desc: "SLAM, mapping, and navigation workflows that translate from simulation into hardware behavior you can tune and trust.",
+            desc: "Building localization and navigation stacks that balance accuracy, stability, and real-time constraints.",
             caps: [
-              "SLAM + mapping to build consistent scene structure",
-              "State estimation concepts (Kalman/EKF-style thinking) for stable pose",
-              "Path planning + obstacle handling with practical tuning tradeoffs",
+              "SLAM, mapping, and localization using LiDAR, IMU, and GPS",
+              "State estimation with Kalman-filter-based sensor fusione",
+              "Path planning, obstacle avoidance, and recovery behaviors",
             ],
-            exampleTitle: "Autonomy stacks (simulation → hardware)",
+            exampleTitle: "Autonomous navigation systems (simulation → hardware)",
             exampleBody:
-              "End-to-end navigation workflows integrating sensing, localization, and planning — tuned against real constraints rather than perfect sim.",
-            stack: ["ROS2", "SLAM", "RViz", "Gazebo", "GTSAM", "Sensor Fusion", "Linux"],
+              "Developed ROS2-based navigation pipelines integrating LiDAR, IMU, and GPS for autonomous robots. Validated performance in Gazebo and transitioned to real hardware with stable localization, mapping, and obstacle avoidance.",
+            stack: ["ROS2", "SLAM", "RViz", "Gazebo", "IMU", "LIDAR", "GPS", "GTSAM", "Sensor Fusion", "Linux", "EKF", "C++", "Python"],
           },
           integration: {
             title: "Integration & Deployment",
-            desc: "System-level integration: sensors + compute + I/O into a robot that’s debuggable, reliable, and production-friendly.",
+            desc: "Connecting sensors, compute, and I/O into systems that are debuggable, reliable, and production-ready.",
             caps: [
-              "Sensor integration (cameras/LiDAR/IMU/GPS) + timing discipline",
-              "Bring-up workflows, logging, and practical debugging loops",
-              "Hardware + software handoff logic with deployment mindset",
+              "Multi-sensor integration (cameras, LiDAR, IMU, GPS) with timing discipline",
+              "ROS2 node design, logging, diagnostics, and bring-up workflows",
+              "Applied control (PID / MPC) where stability and robustness matter more than theory",
             ],
-            exampleTitle: "Industrial automation + robotic integration work",
+            exampleTitle: "Industrial robotic vision and automation systems",
             exampleBody:
-              "Field wiring, sensors, interlocks, and deployment behaviors — the difference between a demo and something that survives a factory floor.",
-            stack: ["Linux", "ROS2", "Sensors", "Raspberry Pi", "Arduino", "Git", "Wiring/IO", "Debugging"],
+              "Led full-stack integration of vision, motion, safety, and I/O for deployed robotic systems. Handled wiring, sensors, safety interlocks, logging, and fault handling in production environments.",
+            stack: ["Linux", "ROS2", "Embedded Systems", "Sensors", "Raspberry Pi", "Jetson Nano", "ESP32", "BTT Octopus Board", "Git", "Wiring/IO", "Debugging"],
           },
         };
 
@@ -1227,6 +1202,53 @@
 
         moduleBtns.forEach((btn) => btn.addEventListener("click", () => setActiveModule(btn.dataset.module)));
         setActiveModule("perception");
+
+
+        // ---------------------------
+        // Beacon Lottie (safe init)
+        // ---------------------------
+        window.addEventListener("load", () => {
+          const el = document.getElementById("beaconAnim");
+          const jsonTag = document.getElementById("beaconLottieJson");
+          if (!el || !jsonTag) return;
+
+          const waitForLottie = () => {
+            if (!window.lottie) {
+              setTimeout(waitForLottie, 30);
+              return;
+            }
+
+            let animData;
+            try {
+              animData = JSON.parse(jsonTag.textContent.trim());
+            } catch (e) {
+              console.error("Beacon Lottie JSON parse failed:", e);
+              return;
+            }
+
+            el.style.display = "grid";
+            el.style.placeItems = "center";
+
+            const inner = document.createElement("div");
+            inner.style.width = "160px";
+            inner.style.height = "160px";
+            el.appendChild(inner);
+
+            window.lottie.loadAnimation({
+            container: document.getElementById("beaconAnim"),
+              renderer: "svg",
+              loop: true,
+              autoplay: true,
+              animationData: animData,
+            rendererSettings: {
+              preserveAspectRatio: "xMidYMid meet", // IMPORTANT: slice = cover
+              progressiveLoad: true,
+            },
+            });
+          };
+
+          waitForLottie();
+        });
 
         
     </script>
