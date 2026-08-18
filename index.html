@@ -426,9 +426,6 @@
                   ></div>
 
                   <!-- tiny readouts (makes it feel like an interface) -->
-                  <div class="absolute left-6 top-4 mono text-[10px] text-white/55">
-                    stack: <span class="text-white/80">perception • slam • planning</span>
-                  </div>
 
                   <!-- center humanoid (moves along the bus) -->
                   <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -572,10 +569,10 @@
               <div class="tilt-inner">
                 <div class="flex items-start justify-between gap-4">
                   <div>
-                    <div class="mono text-xs text-white/60">FUSION STACK</div>
-                    <div class="mt-1 text-xl font-bold">Sensor Fusion Stack</div>
+                    <div class="mono text-xs text-white/60">HOW THE PIECES FIT</div>
+                    <div class="mt-1 text-xl font-bold">Sensor Fusion</div>
                     <div class="mt-1 text-sm text-white/70">
-                      LiDAR + camera + IMU/GPS streams — fused into a stable pose & scene model.
+                      What each sensor contributes, and how the streams combine into a stable pose and scene model.
                     </div>
                   </div>
                 </div>
@@ -651,13 +648,6 @@
                   </div>
                 </div>
 
-                <div class="mt-4 flex items-center justify-between gap-3">
-                  <div class="mono text-[11px] text-white/60">COMMAND:</div>
-                  <div class="mono text-[11px] text-white/70">
-                    <span style="color:#ccff00">ros2</span> launch fusion_stack bringup.launch.py
-                  </div>
-
-                </div>
               </div>
             </div>
 
@@ -704,19 +694,9 @@
                   and repeatable positioning.
                 </div>
 
-                <!-- optional: clean “console” line (keeps it generic, not over-sharing) -->
                 <div class="mt-4 glass-strong rounded-2xl px-4 py-3 border border-white/10">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="mono text-[11px] text-white/60">
-                      status: <span class="text-white/85">deployed (internal)</span>
-                      <span class="text-white/35">•</span>
-                      mode: <span style="color:#ccff00">vision + IO</span>
-                    </div>
-                    <div class="mono text-[11px] text-white/60">
-                      focus: <span style="color:#2e66ff">repeatability</span>
-                      <span class="text-white/35">•</span>
-                      integration: <span class="text-white/80">line-ready</span>
-                    </div>
+                  <div class="text-sm text-white/75">
+                    Deployed on an internal production line. Vision and I/O, built for repeatability.
                   </div>
                 </div>
               </div>
