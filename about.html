@@ -341,56 +341,27 @@
 
                   <div class="mt-4 mono text-[11px] text-white/60">IMPACT</div>
                   <ul class="mt-2 space-y-2 text-sm text-white/75 leading-relaxed">
-                    <li class="flex gap-2">
-                      <span style="color:#ccff00">▸</span>
-                      <span>
-                        Owned an <b>epoxy dispensing cell</b> end-to-end, concept through commissioning and operator training — a <b>6-DOF arm</b> and two-part applicator built in-house to replace manual hand-gun application, lifting output from <b>~88 to ~235 boards/day</b> and freeing a dedicated operator.
-                      </span>
-                    </li>
-
-                    <li class="flex gap-2">
-                      <span style="color:#ccff00">▸</span>
-                      <span>
-                        Designed and deployed <b>two machine-vision inspection systems</b> for multi-stage PCB validation (positional alignment, feature recognition, data-matrix verification) before conformal coating — reduced downstream rejects by <b>98%</b> and increased inspection throughput by <b>65%</b>.
-                      </span>
-                    </li>
-
-                    <li class="flex gap-2">
-                      <span style="color:#ccff00">▸</span>
-                      <span>
-                        Engineered a perception + motion-control architecture using a <b>BTT Octopus</b> controller with customized <b>Marlin</b> firmware — coordinated <b>7 synchronized stepper axes</b> with sensorless homing for repeatable conveyor positioning and precision alignment.
-                      </span>
-                    </li>
-
-                    <li class="flex gap-2">
-                      <span style="color:#ccff00">▸</span>
-                      <span>
-                        Built the mechanical + software framework in <b>Python/C++</b>: modular ESD-safe assemblies (CAD + 3D-printed components), <b>OpenCV</b> inspection pipeline, SMEMA handshaking, MES API validation, and LabVIEW monitoring — achieved <b>100% traceability</b> across the coating line.
-                      </span>
-                    </li>
-
-                    <li class="flex gap-2">
-                      <span style="color:#ccff00">▸</span>
-                      <span>
-                        Delivered <b>two 6-DOF robotic vision systems</b> using <b>MyCobot 320 Pi</b> arms with <b>8K cameras</b> and a Python–ROS2–OpenCV stack to automate PCB barcode linking — eliminated manual scan errors and achieved end-to-end traceability downstream.
-                      </span>
-                    </li>
-
-                    <li class="flex gap-2">
-                      <span style="color:#ccff00">▸</span>
-                      <span>
-                        Directed electromechanical + safety integration (Keyence light curtains, photo sensors, tower lights, COB illumination, polarizers) on Raspberry Pi 4 / ESP32 — autonomous fault handling + automated CSV/image logs, enabling a <b>3× throughput increase</b> and <b>zero rework incidents</b>.
-                      </span>
-                    </li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Owned an <b>epoxy dispensing cell</b> end-to-end, concept through commissioning and operator training — a <b>6-DOF arm</b> and two-part applicator built in-house to replace manual hand-gun application, lifting output from <b>~88 to ~235 boards/day</b> and freeing a dedicated operator.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Built the cell's control stack in <b>Python</b> (robot motion, digital I/O, threading, recipes, and the operator HMI) where each board variant loads as a runtime module without touching core code; collapsed seven blocking GPIO reads into one cached poll per cycle.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Programmed per-variant dispense toolpaths from engineering drawings, controlling bead width by modulating robot speed against a fixed dispense rate, with a 3D-printed go/no-go nozzle gauge holding toolpaths valid across nozzle changes.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Designed an inspection cell that checks every board before conformal coating in <b>C and C++</b>, verifying positional alignment, feature detection, and data-matrix identity at <b>100% traceability</b>, with per-board worker threads pipelining motion and vision to inspect concurrently across a pallet, catching bad boards before a coating that cannot be reworked.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Raised coating throughput <b>~65%</b> by replacing single-pallet hand loading with a two-stage conveyor feeding pallets continuously, on a 32-bit controller reflashed with custom <b>Marlin</b> firmware driving camera and conveyor motion over G-code with sensorless homing.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Delivered <b>two 6-DOF robotic vision cells</b> (Python, ROS2, OpenCV) locating and decoding data-matrix codes on both board faces and linking them into one record at <b>100% traceability</b>; applied multi-stage image preprocessing and optimized camera parameters for consistent, glare-free imaging under variable factory lighting, with operator HMI and image/CSV logging, and cut cycle time <b>~70%</b> post-deployment.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Integrated safety and I/O across cells (E-Stop, light curtains, photoelectric sensors, tower lights) with automatic pause/resume, fault recovery, and rev-controlled work instructions so operators run independently on day one.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Validated each cell offline against golden and failed units before release, with startup self-tests for I/O, robot nodes and camera connectivity, and axis homing, plus failed-image logging for debugging; shipped as compiled executables, one versioned build per release.</span></li>
                   </ul>
 
                   <div class="mt-4 flex flex-wrap gap-2">
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Machine Vision</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">OpenCV</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">ROS2</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Python</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">C / C++</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Motion Control</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Marlin</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Embedded</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Safety</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">HMI</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">MES / Traceability</span>
                   </div>
                 </div>
@@ -413,17 +384,21 @@
 
                   <div class="mt-4 mono text-[11px] text-white/60">IMPACT</div>
                   <ul class="mt-2 space-y-2 text-sm text-white/75 leading-relaxed">
-                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Developed and validated an autonomous navigation pipeline in <b>ROS2 + Gazebo</b>, integrating <b>LiDAR, IMU, GPS</b> for localization and obstacle avoidance; applied <b>EKF sensor fusion</b> to improve trajectory stability.</span></li>
-                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Designed and tuned motion planning in ROS2 using <b>costmaps, DWA, and A*</b> for adaptive routing and recovery; optimized in <b>RViz/Gazebo</b> to reduce drift and improve path smoothness.</span></li>
-                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Built perception modules in <b>Python + OpenCV</b> for terrain segmentation, feature detection, and visual mapping to improve decision-making in simulation.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Architected and delivered an <b>outdoor autonomous mobile robot</b> stack on client hardware (2D LiDAR, 9-axis VectorNav IMU, GPS, and camera on <b>Jetson Nano</b>), covering ROS 2 sensor bring-up, TF and time synchronization, and field validation through client handoff.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Cut heading error from <b>10-30 degrees to ~2 degrees</b> through hard/soft-iron magnetometer calibration and <b>EKF fusion</b> of IMU, LiDAR, and GPS, then tuned <b>Nav2</b> costmaps, DWA, and A* against logged hardware runs to close the sim-to-real gap.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Implemented the perception layer in <b>OpenCV</b> (terrain segmentation and feature detection classifying traversable ground from a single camera under variable outdoor lighting), adapting published traversability methods to run at <b>~10 fps</b> on Jetson Nano.</span></li>
                   </ul>
 
                   <div class="mt-4 flex flex-wrap gap-2">
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">ROS2</span>
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Nav / Planning</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Nav2</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">EKF Fusion</span>
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Gazebo</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Jetson Nano</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">LiDAR</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">IMU</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">GPS</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">OpenCV</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Sim-to-Real</span>
                   </div>
                 </div>
               </div>
@@ -444,18 +419,20 @@
 
                   <div class="mt-4 mono text-[11px] text-white/60">IMPACT</div>
                   <ul class="mt-2 space-y-2 text-sm text-white/75 leading-relaxed">
-                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Developed motion-control systems for industrial automation, implementing <b>PID-based velocity controllers</b> in C++ for conveyor-driven sorting arms; improved response time and reduced oscillations in real-world tests.</span></li>
-                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Implemented LiDAR SLAM using the ROS2 navigation stack, refining mapping pipelines (Gmapping/Cartographer) and optimizing point clouds with <b>Voxel-Grid filtering</b> for better localization and compute efficiency.</span></li>
-                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Prototyped a vision-based gesture recognition interface with <b>OpenCV + TensorFlow</b>, enabling basic robot control via hand-motion detection and CNN classification.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Mapped warehouse floors using <b>2D LiDAR SLAM</b> in ROS with <b>Cartographer</b>, correcting wheel-odometry yaw drift through IMU fusion and relying on pose-graph loop closure to hold map consistency across large floor loops.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Deployed autonomous navigation using a pre-mapped occupancy grid with <b>move_base</b> and <b>AMCL</b>, tuning particle counts, costmap inflation radius, and DWA sim_time to hold reliable clearance through narrow warehouse aisles.</span></li>
+                    <li class="flex gap-2"><span style="color:#ccff00">▸</span><span>Configured motion-control boards and firmware for a conveyor-driven sorting cell as part of a cross-functional engineering team, implementing <b>PID velocity control</b> in C++ and tuning loop response to eliminate oscillation under variable load.</span></li>
                   </ul>
 
                   <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Controls</span>
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">PID</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">ROS</span>
                     <span class="mono text-[11px] rounded-xl px-2 py-1 glass">SLAM</span>
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">LiDAR</span>
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">OpenCV</span>
-                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">TensorFlow</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">Cartographer</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">AMCL</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">move_base</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">IMU Fusion</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">PID</span>
+                    <span class="mono text-[11px] rounded-xl px-2 py-1 glass">C++</span>
                   </div>
                 </div>
               </div>
