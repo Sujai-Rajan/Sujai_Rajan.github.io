@@ -676,6 +676,22 @@
         // Industrial projects (from career experience)
         // ---------------------------
         {
+          id: "epoxy-dispensing-cell",
+          mode: "industrial",
+          span: "col-span-12 lg:col-span-12",
+          title: "Epoxy Dispensing Cell (6-DOF Arm, Built In-House)",
+          meta: "Futaba Corporation of America",
+          tags: ["Python", "6-DOF Arm", "Motion Programming", "GPIO", "Threading", "PySide6", "HMI", "Dispensing", "3D Printing"],
+          summary:
+            "Replaced manual hand-gun epoxy application with a 6-DOF arm and two-part applicator built in-house, owned from concept through commissioning and operator training.",
+          bullets: [
+            "Lifted output from ~88 to ~235 boards/day and freed a dedicated operator from the manual station.",
+            "Built the control stack in Python — robot motion, digital I/O, threading, recipes, and the operator HMI — where each board variant loads as a runtime module without touching core code.",
+            "Programmed per-variant dispense toolpaths from engineering drawings, controlling bead width by modulating robot speed against a fixed dispense rate.",
+            "Held toolpaths valid across nozzle changes with a 3D-printed go/no-go nozzle gauge.",
+          ],
+        },
+        {
           id: "vision-inspection",
           mode: "industrial",
           span: "col-span-12 lg:col-span-7",
