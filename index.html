@@ -230,6 +230,24 @@
 
 
 
+
+      /* --- sensor illustration animations (decorative, no data claims) --- */
+      @keyframes traceScroll { from { transform: translateX(0); } to { transform: translateX(-200px); } }
+      .trace-scroll { animation: traceScroll 6s linear infinite; }
+      .trace-scroll.slow { animation-duration: 9s; }
+      .trace-scroll.fast { animation-duration: 4.2s; }
+      @keyframes lidarSweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      .lidar-sweep { animation: lidarSweep 4.5s linear infinite; transform-origin: 100px 112px; }
+      @keyframes fixPulse {
+        0%,100% { transform: scale(.72); opacity: .55; }
+        50%     { transform: scale(1.18); opacity: .12; }
+      }
+      .fix-pulse { animation: fixPulse 3.2s ease-in-out infinite; transform-origin: center; }
+      @keyframes satDrift { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+      .sat-drift { animation: satDrift 3.6s ease-in-out infinite alternate; }
+      @media (prefers-reduced-motion: reduce) {
+        .trace-scroll, .fix-pulse, .sat-drift, .lidar-sweep { animation: none !important; }
+      }
     </style>
   </head>
 
@@ -462,97 +480,108 @@
                 </div>
 
 
-                <!-- Skills cloud (resume-complete, no headings) -->
-                <div class="mt-4 flex flex-wrap gap-2 leading-tight">
-
-                  <!-- Languages & OS -->
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass-strong">Python</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass-strong">C++</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">C</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">MATLAB</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Linux</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Git</span>
-
-                  <!-- Robotics core -->
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass-strong">ROS</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass-strong">ROS2</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass-strong">Perception</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass-strong">SLAM</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Mapping</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Path Planning</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Motion Planning</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Kinematics</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Sensor Fusion</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">OpenCV</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Robot Control (PID, MPC)</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Localization</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Costmaps</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">DWA</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">A*</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">EKF</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Nav2</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">AMCL</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Cartographer</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">move_base</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Sim-to-Real</span>
-
-                  <!-- Vision -->
-
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Object Detection</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Feature Extraction</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Pose Estimation</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Stereo Vision</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">3D Vision</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Image Processing</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Camera Calibration</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Machine Vision</span>
-
-                  <!-- ML -->
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Supervised Learning</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Unsupervised Learning</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Deep Learning</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">CNNs</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">PyTorch</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">TensorFlow</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Scikit-Learn</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Keras</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Transfer Learning</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Reinforcement Learning</span>
-
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Arduino</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Raspberry Pi</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Jetson Nano</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">SolidWorks</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">AutoCAD</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Autodesk Inventor</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">ESP32</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Marlin Firmware</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">G-code</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Motion Control</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">GPIO</span>
-
-                  <!-- Estimation / geometry -->
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Kalman Filtering</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">GTSAM</span>
-
-                  <!-- Hardware -->
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Cameras</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">LiDAR</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">IMU</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">GPS</span>
-
-
-                  <!-- Simulation / design -->
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Gazebo</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">RViz</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">MoveIt2</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">6-DOF Industrial Arms</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">HMI</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">MES</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">SMEMA</span>
-                  <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Traceability</span>
-
-
+                <!-- Skills cloud, grouped to match the resume -->
+                <div class="mt-4 grid gap-4">
+                  <div>
+                    <div class="mono text-[10px] tracking-[.18em] text-white/45">LANGUAGES &AMP; FRAMEWORKS</div>
+                    <div class="mt-2 flex flex-wrap gap-2 leading-tight">
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Python</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">C++</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">C</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">MATLAB</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Linux</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Git</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">ROS</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">ROS2</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Gazebo</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">RViz</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">MoveIt2</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Nav2</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">AMCL</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Cartographer</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">move_base</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mono text-[10px] tracking-[.18em] text-white/45">NAVIGATION &AMP; ESTIMATION</div>
+                    <div class="mt-2 flex flex-wrap gap-2 leading-tight">
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">SLAM</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Localization</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Mapping</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Sensor Fusion</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">EKF</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Kalman Filtering</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Costmaps</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">DWA</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">A*</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Path Planning</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Motion Planning</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Kinematics</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Sim-to-Real</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mono text-[10px] tracking-[.18em] text-white/45">PERCEPTION &AMP; COMPUTER VISION</div>
+                    <div class="mt-2 flex flex-wrap gap-2 leading-tight">
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">OpenCV</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Image Processing</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Camera Calibration</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Pose Estimation</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Object Detection</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Feature Extraction</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Stereo Vision</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">3D Vision</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Machine Vision</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">YOLO</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">GTSAM</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mono text-[10px] tracking-[.18em] text-white/45">MACHINE LEARNING</div>
+                    <div class="mt-2 flex flex-wrap gap-2 leading-tight">
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">PyTorch</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">TensorFlow</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Keras</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Scikit-Learn</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">CNNs</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Deep Learning</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Transfer Learning</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Supervised Learning</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Unsupervised Learning</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Reinforcement Learning</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mono text-[10px] tracking-[.18em] text-white/45">HARDWARE &AMP; EMBEDDED</div>
+                    <div class="mt-2 flex flex-wrap gap-2 leading-tight">
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">LiDAR</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">IMU</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">GPS</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Cameras</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Jetson Nano</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Raspberry Pi</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Arduino</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">ESP32</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Marlin Firmware</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">G-code</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Motion Control</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">GPIO</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Robot Control (PID, MPC)</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mono text-[10px] tracking-[.18em] text-white/45">MANUFACTURING &AMP; SYSTEMS</div>
+                    <div class="mt-2 flex flex-wrap gap-2 leading-tight">
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">6-DOF Industrial Arms</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">HMI</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">MES</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">SMEMA</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Traceability</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">SolidWorks</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">Autodesk Inventor</span>
+                      <span class="mono text-[11px] rounded-xl px-2.5 py-1 glass">AutoCAD</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -564,7 +593,7 @@
           </div>
 
           <!-- Right: “Live” robotics panel -->
-          <div class="space-y-6 lg:col-span-5">
+          <div class="space-y-6 lg:col-span-5 flex flex-col h-full">
             <div class="glass rounded-3xl p-5 sm:p-6 lg:p-5 neon-ring tilt" id="tiltPanel">
               <div class="tilt-inner">
                 <div class="flex items-start justify-between gap-4">
@@ -583,24 +612,21 @@
                   <div class="glass-strong rounded-2xl p-3 hover-lift tile">
                     <div class="mono text-[11px] text-white/60">LIDAR</div>
                     <div class="mt-2 relative h-28 overflow-hidden rounded-xl border border-white/10 bg-black/40">
-                      <!-- radar sweep -->
                       <svg class="absolute inset-0 h-full w-full" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
-                        <defs>
-                          <radialGradient id="g" cx="35%" cy="60%" r="70%">
-                            <stop offset="0%" stop-color="#ccff00" stop-opacity="0.22" />
-                            <stop offset="60%" stop-color="#ccff00" stop-opacity="0.06" />
-                            <stop offset="100%" stop-color="#ccff00" stop-opacity="0.0" />
-                          </radialGradient>
-                        </defs>
-                        <rect x="0" y="0" width="200" height="120" fill="url(#g)" />
-                        <g opacity="0.7">
-                          <path d="M0,90 C40,80 70,75 105,55 C140,35 165,20 200,10" fill="none" stroke="#2e66ff" stroke-opacity="0.5" stroke-width="1.2"/>
-                          <path d="M0,105 C55,92 88,80 120,62 C150,45 175,30 200,22" fill="none" stroke="#ccff00" stroke-opacity="0.35" stroke-width="1.2"/>
+                        <g><path d="M131.7,107.5 A32,32 0 0 1 68.3,107.5" fill="none" stroke="#fff" stroke-opacity="0.10" stroke-width="1"/><path d="M159.4,103.6 A60,60 0 0 1 40.6,103.6" fill="none" stroke="#fff" stroke-opacity="0.10" stroke-width="1"/><path d="M187.1,99.8 A88,88 0 0 1 12.9,99.8" fill="none" stroke="#fff" stroke-opacity="0.10" stroke-width="1"/><line x1="100" y1="112" x2="192.7" y2="87.2" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="183.1" y2="64.0" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="167.9" y2="44.1" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="148.0" y2="28.9" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="124.8" y2="19.3" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="100.0" y2="16.0" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="75.2" y2="19.3" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="52.0" y2="28.9" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="32.1" y2="44.1" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="16.9" y2="64.0" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/><line x1="100" y1="112" x2="7.3" y2="87.2" stroke="#fff" stroke-opacity="0.06" stroke-width="1"/></g>
+                        <g class="lidar-sweep">
+                          <path d="M100,112 L196,112 A96,96 0 0 0 175.6,52.9 Z" fill="url(#lidarWedge)"/>
                         </g>
+                        <defs>
+                          <linearGradient id="lidarWedge" x1="0" y1="1" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#ccff00" stop-opacity="0.30"/>
+                            <stop offset="100%" stop-color="#ccff00" stop-opacity="0"/>
+                          </linearGradient>
+                        </defs>
+                        <circle cx="28" cy="74" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="38" cy="58" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="50" cy="46" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="63" cy="40" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="77" cy="38" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="92" cy="40" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="104" cy="52" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="118" cy="52" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="132" cy="52" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="146" cy="52" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="150" cy="64" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="152" cy="78" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="160" cy="88" r="1.7" fill="#ccff00" fill-opacity="0.9"/><circle cx="172" cy="96" r="1.7" fill="#ccff00" fill-opacity="0.9"/>
+                        <circle cx="100" cy="112" r="3.2" fill="#2e66ff"/>
+                        <circle cx="100" cy="112" r="7" fill="none" stroke="#2e66ff" stroke-opacity="0.45" stroke-width="1"/>
                       </svg>
-                      <div id="sweep" class="absolute -left-10 top-0 h-full w-24"
-                        style="background: linear-gradient(90deg, transparent, rgba(204,255,0,.18), transparent); transform: skewX(-18deg);"
-                      ></div>
                     </div>
                     <div class="mt-2 mono text-[11px] text-white/60">
                       <span style="color:#ccff00">~</span> scan matching/obstacle cues
@@ -610,21 +636,15 @@
                   <div class="glass-strong rounded-2xl p-3 hover-lift tile">
                     <div class="mono text-[11px] text-white/60">CAMERA</div>
                     <div class="mt-2 relative h-28 overflow-hidden rounded-xl border border-white/10 bg-black/40">
-                      <!-- “camera feed” shimmer tiles -->
-                      <div class="absolute inset-0 grid grid-cols-3 gap-[2px] p-[2px] opacity-95">
-                        <div class="rounded-[8px] bg-white/5"></div>
-                        <div class="rounded-[8px] bg-white/10"></div>
-                        <div class="rounded-[8px] bg-white/5"></div>
-                        <div class="rounded-[8px] bg-white/10"></div>
-                        <div class="rounded-[8px] bg-white/5"></div>
-                        <div class="rounded-[8px] bg-white/10"></div>
-                        <div class="rounded-[8px] bg-white/5"></div>
-                        <div class="rounded-[8px] bg-white/10"></div>
-                        <div class="rounded-[8px] bg-white/5"></div>
-                      </div>
-                      <div id="shimmer" class="absolute -left-28 top-0 h-full w-40"
-                        style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.20), transparent); transform: skewX(-18deg);"
-                      ></div>
+                      <svg class="absolute inset-0 h-full w-full" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
+                        <rect x="86" y="18" width="72" height="52" rx="4" fill="#2e66ff" fill-opacity="0.07"
+                              stroke="#2e66ff" stroke-opacity="0.55" stroke-width="1.2"/>
+                        <line x1="30" y1="34" x2="23" y2="37" stroke="#2e66ff" stroke-opacity="0.65" stroke-width="1"/><line x1="74" y1="44" x2="67" y2="47" stroke="#2e66ff" stroke-opacity="0.65" stroke-width="1"/><line x1="120" y1="50" x2="113" y2="53" stroke="#2e66ff" stroke-opacity="0.65" stroke-width="1"/><line x1="164" y1="46" x2="157" y2="49" stroke="#2e66ff" stroke-opacity="0.65" stroke-width="1"/><line x1="72" y1="90" x2="65" y2="93" stroke="#2e66ff" stroke-opacity="0.65" stroke-width="1"/><line x1="132" y1="96" x2="125" y2="99" stroke="#2e66ff" stroke-opacity="0.65" stroke-width="1"/><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="27" y1="34" x2="33" y2="34"/><line x1="30" y1="31" x2="30" y2="37"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="49" y1="26" x2="55" y2="26"/><line x1="52" y1="23" x2="52" y2="29"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="71" y1="44" x2="77" y2="44"/><line x1="74" y1="41" x2="74" y2="47"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="93" y1="30" x2="99" y2="30"/><line x1="96" y1="27" x2="96" y2="33"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="117" y1="50" x2="123" y2="50"/><line x1="120" y1="47" x2="120" y2="53"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="139" y1="34" x2="145" y2="34"/><line x1="142" y1="31" x2="142" y2="37"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="161" y1="46" x2="167" y2="46"/><line x1="164" y1="43" x2="164" y2="49"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="43" y1="78" x2="49" y2="78"/><line x1="46" y1="75" x2="46" y2="81"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="69" y1="90" x2="75" y2="90"/><line x1="72" y1="87" x2="72" y2="93"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="101" y1="84" x2="107" y2="84"/><line x1="104" y1="81" x2="104" y2="87"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="129" y1="96" x2="135" y2="96"/><line x1="132" y1="93" x2="132" y2="99"/></g><g stroke="#ccff00" stroke-opacity="0.85" stroke-width="1.1"><line x1="155" y1="80" x2="161" y2="80"/><line x1="158" y1="77" x2="158" y2="83"/></g>
+                        <g stroke="#fff" stroke-opacity="0.28" stroke-width="1.4" fill="none">
+                          <path d="M8,22 L8,10 L22,10"/><path d="M192,22 L192,10 L178,10"/>
+                          <path d="M8,98 L8,110 L22,110"/><path d="M192,98 L192,110 L178,110"/>
+                        </g>
+                      </svg>
                     </div>
                     <div class="mt-2 mono text-[11px] text-white/60">
                       <span style="color:#2e66ff">⊙</span> features/tracking/pose cues
@@ -633,18 +653,53 @@
 
                   <div class="glass-strong rounded-2xl p-3 hover-lift tile">
                     <div class="mono text-[11px] text-white/60">IMU</div>
-                    <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
-                      <div class="h-full w-1/2" style="background:#ccff00; box-shadow: 0 0 18px rgba(204,255,0,.35)"></div>
+                    <div class="mt-2 relative h-28 overflow-hidden rounded-xl border border-white/10 bg-black/40">
+                      <svg class="absolute inset-0 h-full w-full" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
+                        <g opacity="0.5">
+                          <line x1="0" y1="30" x2="200" y2="30" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/>
+                          <line x1="0" y1="60" x2="200" y2="60" stroke="#fff" stroke-opacity="0.12" stroke-width="1"/>
+                          <line x1="0" y1="92" x2="200" y2="92" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/>
+                        </g>
+                        <g class="trace-scroll"><path d="M0,30 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0 q6.25,-11.00 12.50,0 q6.25,11.00 12.50,0" fill="none" stroke="#ccff00" stroke-opacity="0.80" stroke-width="1.6"/></g>
+                        <g class="trace-scroll fast"><path d="M0,60 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0 q5.00,14.00 10.00,0 q5.00,-14.00 10.00,0" fill="none" stroke="#2e66ff" stroke-opacity="0.80" stroke-width="1.6"/></g>
+                        <g class="trace-scroll slow"><path d="M0,92 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0 q10.00,-7.00 20.00,0 q10.00,7.00 20.00,0" fill="none" stroke="#fff" stroke-opacity="0.38" stroke-width="1.4"/></g>
+                      </svg>
+                      <div class="absolute right-1.5 top-1 mono text-[9px] rounded px-1 py-[1px]" style="color:#ccff00; background:rgba(0,0,0,.62)">gyro</div>
+                      <div class="absolute right-1.5 top-[30%] mono text-[9px] rounded px-1 py-[1px]" style="color:#2e66ff; background:rgba(0,0,0,.62)">accel</div>
+                      <div class="absolute right-1.5 bottom-1 mono text-[9px] rounded px-1 py-[1px] text-white/55" style="background:rgba(0,0,0,.62)">mag</div>
                     </div>
-                    <div class="mt-2 mono text-[11px] text-white/60">bias estimation, EKF innovation gating</div>
+                    <div class="mt-2 mono text-[11px] text-white/60">
+                      <span style="color:#ccff00">~</span> bias estimation, EKF innovation gating
+                    </div>
                   </div>
 
                   <div class="glass-strong rounded-2xl p-3 hover-lift tile">
                     <div class="mono text-[11px] text-white/60">GPS</div>
-                    <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
-                      <div class="h-full w-[68%]" style="background:#2e66ff; box-shadow: 0 0 18px rgba(46,102,255,.35)"></div>
+                    <div class="mt-2 relative h-28 overflow-hidden rounded-xl border border-white/10 bg-black/40">
+                      <svg class="absolute inset-0 h-full w-full" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
+                        <g opacity="0.22">
+                          <line x1="50" y1="0" x2="50" y2="120" stroke="#fff" stroke-width="1"/>
+                          <line x1="100" y1="0" x2="100" y2="120" stroke="#fff" stroke-width="1"/>
+                          <line x1="150" y1="0" x2="150" y2="120" stroke="#fff" stroke-width="1"/>
+                          <line x1="0" y1="40" x2="200" y2="40" stroke="#fff" stroke-width="1"/>
+                          <line x1="0" y1="80" x2="200" y2="80" stroke="#fff" stroke-width="1"/>
+                        </g>
+                        <circle class="fix-pulse" cx="150" cy="46" r="26" fill="#2e66ff" fill-opacity="0.16"/>
+                        <path d="M8,96 C46,88 74,74 104,62 C132,51 152,48 192,42"
+                              fill="none" stroke="#ccff00" stroke-opacity="0.80" stroke-width="1.8"/>
+                        <g class="sat-drift" fill="#2e66ff" fill-opacity="0.85">
+                          <circle cx="26" cy="88" r="2"/><circle cx="58" cy="88" r="2"/>
+                          <circle cx="86" cy="55" r="2"/><circle cx="118" cy="63" r="2"/>
+                          <circle cx="146" cy="41" r="2"/><circle cx="176" cy="47" r="2"/>
+                        </g>
+                        <circle cx="150" cy="46" r="3.2" fill="#ccff00"/>
+                      </svg>
+                      <div class="absolute left-2 top-1.5 mono text-[9px] text-white/45">raw fixes</div>
+                      <div class="absolute right-2 bottom-1.5 mono text-[9px]" style="color:#ccff00">fused track</div>
                     </div>
-                    <div class="mt-2 mono text-[11px] text-white/60">global correction/drift reset</div>
+                    <div class="mt-2 mono text-[11px] text-white/60">
+                      <span style="color:#2e66ff">&#9673;</span> global correction/drift reset
+                    </div>
                   </div>
                 </div>
 
@@ -656,7 +711,7 @@
               <!-- Video -->
               <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40">
                 <video
-                  class="w-full h-72 lg:h-80 object-cover"
+                  class="w-full h-72 lg:h-96 object-cover"
                   autoplay
                   muted
                   loop
@@ -700,6 +755,35 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <!-- Resume + quick links -->
+            <div class="glass rounded-3xl p-6 sm:p-7 neon-ring hover:bg-white/5 transition flex-1 flex flex-col justify-center">
+              <div class="mono text-xs text-white/60">RESUME</div>
+              <div class="mt-1 text-xl font-extrabold tracking-tight">Full experience, one page down</div>
+              <div class="mt-1 text-sm text-white/70">
+                Production robotics, perception and deployment work, with the numbers attached.
+              </div>
+
+              <div class="mt-4 flex flex-wrap items-center gap-3">
+                <a
+                  class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-bold text-black hover-lift"
+                  style="background:#ccff00; box-shadow: 0 0 30px rgba(204,255,0,.28);"
+                  href="assets/Sujai_Rajan_Resume.pdf" target="_blank" rel="noreferrer"
+                >
+                  Download Resume
+                  <span class="mono text-sm">&#8595;</span>
+                </a>
+                <a
+                  class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold glass-strong hover-lift"
+                  href="about.html"
+                >
+                  Experience
+                  <span class="mono text-sm" style="color:#ccff00">&#8594;</span>
+                </a>
+              </div>
+
+              <div class="mt-4 mono text-[11px] text-white/50">PDF &#183; opens in a new tab</div>
             </div>
 
           </div>
