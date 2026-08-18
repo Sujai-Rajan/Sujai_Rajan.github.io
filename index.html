@@ -356,7 +356,6 @@
                       & industrial robotics projects.
                     </div>
                   </div>
-                  <div class="mono text-xs rounded-xl px-3 py-1 glass-strong" style="color:#ccff00">LIVE</div>
                 </div>
 
                 <!-- Humanoid rig (HUD / innovative) -->
@@ -393,11 +392,6 @@
                   <div class="absolute left-6 top-4 mono text-[10px] text-white/55">
                     stack: <span class="text-white/80">perception • slam • planning</span>
                   </div>
-                  <div class="absolute right-6 top-4 mono text-[10px] text-white/55 text-right">
-                    mode: <span style="color:#ccff00">active</span>
-                    <span class="text-white/35">•</span>
-                    sync: <span style="color:#2e66ff">ok</span>
-                  </div>
 
                   <!-- center humanoid (moves along the bus) -->
                   <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -430,8 +424,6 @@
 
                   <!-- bottom label strip -->
                   <div class="absolute left-6 right-6 bottom-3 flex items-center justify-between">
-                    <div class="mono text-[10px] text-white/55">signal: <span class="text-white/80">skill-map</span></div>
-                    <div class="mono text-[10px] text-white/55">frame: <span style="color:#ccff00">stable</span></div>
                   </div>
                 </div>
 
@@ -544,25 +536,13 @@
                 <div class="flex items-start justify-between gap-4">
                   <div>
                     <div class="mono text-xs text-white/60">FUSION STACK</div>
-                    <div class="mt-1 text-xl font-bold">Robotics Telemetry</div>
+                    <div class="mt-1 text-xl font-bold">Sensor Fusion Stack</div>
                     <div class="mt-1 text-sm text-white/70">
                       LiDAR + camera + IMU/GPS streams — fused into a stable pose & scene model.
                     </div>
                   </div>
-                  <div class="mono text-xs rounded-xl px-3 py-1 glass-strong" style="color:#ccff00">LIVE</div>
                 </div>
 
-               <div class="mt-4 glass-strong rounded-2xl px-3 py-2 flex items-center justify-between">
-                  <div class="mono text-[11px] text-white/60">
-                    node: <span class="text-white/80">fusion_core</span>
-                  </div>
-                  <div class="mono text-[11px] text-white/60">
-                    rate: <span style="color:#ccff00">100Hz</span>
-                    <span class="text-white/40">•</span>
-                    latency: <span style="color:#2e66ff">18ms</span>
-                  </div>
-                </div>
- 
 
                 <!-- Faux sensor tiles -->
                 <div class="mt-5 grid grid-cols-2 gap-3">
@@ -619,24 +599,16 @@
 
                   <div class="glass-strong rounded-2xl p-3 hover-lift tile">
                     <div class="mono text-[11px] text-white/60">IMU</div>
-                    <div class="mt-2 flex items-end justify-between gap-2">
-                      <div class="mono text-[11px] text-white/60">gyro_bias</div>
-                      <div class="mono text-[11px]" style="color:#ccff00" id="imuBias">0.014</div>
-                    </div>
                     <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
-                      <div id="imuBar" class="h-full w-1/2" style="background:#ccff00; box-shadow: 0 0 18px rgba(204,255,0,.35)"></div>
+                      <div class="h-full w-1/2" style="background:#ccff00; box-shadow: 0 0 18px rgba(204,255,0,.35)"></div>
                     </div>
-                    <div class="mt-2 mono text-[11px] text-white/60">EKF innovation gating</div>
+                    <div class="mt-2 mono text-[11px] text-white/60">bias estimation, EKF innovation gating</div>
                   </div>
 
                   <div class="glass-strong rounded-2xl p-3 hover-lift tile">
                     <div class="mono text-[11px] text-white/60">GPS</div>
-                    <div class="mt-2 flex items-end justify-between gap-2">
-                      <div class="mono text-[11px] text-white/60">solution</div>
-                      <div class="mono text-[11px]" style="color:#2e66ff" id="gpsFix">3D</div>
-                    </div>
                     <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
-                      <div id="gpsBar" class="h-full w-[68%]" style="background:#2e66ff; box-shadow: 0 0 18px rgba(46,102,255,.35)"></div>
+                      <div class="h-full w-[68%]" style="background:#2e66ff; box-shadow: 0 0 18px rgba(46,102,255,.35)"></div>
                     </div>
                     <div class="mt-2 mono text-[11px] text-white/60">global correction/drift reset</div>
                   </div>
@@ -646,8 +618,6 @@
                   <div class="mono text-[11px] text-white/60">COMMAND:</div>
                   <div class="mono text-[11px] text-white/70">
                     <span style="color:#ccff00">ros2</span> launch fusion_stack bringup.launch.py
-                    <span class="text-white/40">—</span>
-                    <span style="color:#2e66ff">live:=true</span>
                   </div>
 
                 </div>

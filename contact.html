@@ -244,12 +244,12 @@
                   </button>
                   <a
                     class="glass-strong rounded-2xl px-4 py-3 hover-lift block"
-                    href="mailto:send2sujai@gmail.com?subject=Resume%20Request%20—%20Sujai%20Rajan&body=Hi%20Sujai,%0A%0AI’d%20like%20to%20request%20your%20resume.%0A%0AName:%20%0ACompany:%20%0ARole:%20%0AEmail%20to%20send%20resume%20to:%20%0AReason%20for%20request:%20%0A%0AThanks!"
+                    href="assets/Sujai_Rajan_Resume.pdf" target="_blank" rel="noreferrer"
                   >
                     <div class="mono text-[11px] text-white/60">RESUME</div>
-                    <div class="mt-1 font-bold text-white/90">Request Resume</div>
-                    <div class="mt-1 text-sm text-white/70">Approval required-sent via email</div>
-                    <div class="mt-1 mono text-[11px]" style="color:#2e66ff">mailto: request ↗</div>
+                    <div class="mt-1 font-bold text-white/90">Download Resume</div>
+                    <div class="mt-1 text-sm text-white/70">PDF, opens in a new tab</div>
+                    <div class="mt-1 mono text-[11px]" style="color:#2e66ff">Sujai_Rajan_Resume.pdf ↗</div>
                   </a>
 
 
@@ -263,22 +263,14 @@
 
             <div class="glass rounded-3xl p-6 sm:p-8 neon-ring hover:bg-white/5 transition tilt h-full" id="telemetryTilt">
             <div class="tilt-inner">
-              <div class="mono text-xs text-white/60">LIVE TELEMETRY</div>
+              <div class="mono text-xs text-white/60">QUICK ACCESS</div>
 
               <div class="mt-4 grid gap-3">
-                <div class="glass-strong rounded-2xl p-3">
-                  <div class="flex items-center justify-between">
-                    <span class="mono text-[11px] text-white/60">CHANNEL</span>
-                    <span class="mono text-[11px]" style="color:#ccff00" id="chan">UP</span>
-                  </div>
-                  <div class="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
-                    <div id="signalBar" class="h-full rounded-full" style="width: 72%; background: linear-gradient(90deg, rgba(204,255,0,.95), rgba(46,102,255,.7));"></div>
-                  </div>
-                  <div class="mt-2 flex items-center justify-between text-xs text-white/60">
-                    <span class="mono">strength</span>
-                    <span class="mono" id="signalLabel">72%</span>
-                  </div>
-                </div>
+                <a class="glass-strong rounded-2xl p-3 hover-lift block" href="assets/Sujai_Rajan_Resume.pdf" target="_blank" rel="noreferrer">
+                  <div class="mono text-[11px] text-white/60">RESUME</div>
+                  <div class="mt-1 font-bold text-white/90">Download Resume</div>
+                  <div class="mt-1 mono text-[11px]" style="color:#2e66ff">Sujai_Rajan_Resume.pdf &#8599;</div>
+                </a>
 
                 <div class="glass-strong rounded-2xl p-3">
                   <div class="mono text-[11px] text-white/60">SHORTCUTS</div>
@@ -352,8 +344,8 @@
               <!-- Bottom controls (stays pinned down) -->
               <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
                 <div class="mono text-[11px] text-white/60">
-                  Packet size: <span id="packet" class="text-white/80">0</span> bytes •
-                  Integrity: <span id="integrity" style="color:#ccff00">OK</span>
+                  Message length: <span id="packet" class="text-white/80">0</span> characters &#183;
+                  Status: <span id="integrity" style="color:#ccff00">OK</span>
                 </div>
 
                 <div class="flex gap-3">
@@ -405,26 +397,10 @@
                     style="background: linear-gradient(90deg, transparent, rgba(46,102,255,.22), transparent); transform: skewX(-18deg);"
                   ></div>
 
-                  <div class="absolute left-4 top-4 glass-strong rounded-xl px-3 py-2">
-                    <div class="mono text-[11px] text-white/60">CHANNEL</div>
-                    <div class="mono text-[11px]" style="color:#ccff00">UPLINK / ACTIVE</div>
-                  </div>
                 </div>
 
 
 
-                <div class="mt-2 grid gap-3 sm:grid-cols-2">
-                    <div class="glass-strong rounded-2xl px-4 py-4">
-                      <div class="mono text-[11px] text-white/60">SIGNAL</div>
-                      <div class="mt-1 text-lg font-bold"><span style="color:#ccff00" id="signalPct">92</span><span class="text-white/80">%</span></div>
-                      <div class="mt-1 text-sm text-white/65">stability estimate</div>
-                    </div>
-                    <div class="glass-strong rounded-2xl px-4 py-4">
-                      <div class="mono text-[11px] text-white/60">LATENCY</div>
-                      <div class="mt-2 text-lg font-bold"><span style="color:#ccff00"id="latencyMs">18</span><span class="text-white/60">ms</span></div>
-                      <div class="mt-2 text-sm text-white/65">uplink ping</div>
-                    </div>
-                  </dikv>
 
               </div>
             </div>
@@ -544,41 +520,7 @@
       attachTilt("beaconTilt", 12);
       attachTilt("telemetryTilt", 8);
 
-      // ---------------------------
-      // Telemetry simulation
-      // ---------------------------
-      const signalPct = document.getElementById("signalPct");
-      const latencyMs = document.getElementById("latencyMs");
       const headerStatus = document.getElementById("headerStatus");
-
-      const signalBar = document.getElementById("signalBar");
-      const signalLabel = document.getElementById("signalLabel");
-      const chan = document.getElementById("chan");
-
-      let strength = 72;
-      let latency = 18;
-
-      function tickTelemetry() {
-        strength += (Math.random() - 0.5) * 6;
-        strength = Math.max(55, Math.min(98, strength));
-        latency += (Math.random() - 0.5) * 6;
-        latency = Math.max(10, Math.min(62, latency));
-
-        signalPct.textContent = Math.round(strength);
-        latencyMs.textContent = Math.round(latency);
-
-        signalBar.style.width = `${Math.round(strength)}%`;
-        signalLabel.textContent = `${Math.round(strength)}%`;
-
-        if (strength < 65) {
-          chan.textContent = "DEGRADED";
-          chan.style.color = "#2e66ff";
-        } else {
-          chan.textContent = "UP";
-          chan.style.color = "#ccff00";
-        }
-      }
-      setInterval(tickTelemetry, 900);
 
       // ---------------------------
       // Copy email
@@ -628,6 +570,8 @@
       const toastBody = document.getElementById("toastBody");
       const packet = document.getElementById("packet");
       const integrity = document.getElementById("integrity");
+      const handshake = document.getElementById("handshake");
+      const payloadNote = document.getElementById("payloadNote");
 
       function updatePayload() {
         const text = `${nameEl.value}\n${fromEl.value}\n${msgEl.value}`;
@@ -642,14 +586,10 @@
           integrity.style.color = "#ccff00";
         }
 
-        if (msgEl.value.trim().length > 0) {
-          payloadState.textContent = "ARMED";
-          payloadState.style.color = "#ccff00";
-          payloadNote.textContent = "Payload ready. Transmit when ready.";
-        } else {
-          payloadState.textContent = "IDLE";
-          payloadState.style.color = "#2e66ff";
-          payloadNote.textContent = "Start typing to arm the transmission.";
+        if (payloadNote) {
+          if (payloadNote) payloadNote.textContent = msgEl.value.trim().length > 0
+            ? "Ready to send."
+            : "Start typing your message.";
         }
       }
       ["input", "change"].forEach((evt) => {
@@ -664,13 +604,11 @@
         fromEl.value = "";
         msgEl.value = "";
         toast.classList.add("hidden");
-        payloadState.textContent = "IDLE";
-        payloadState.style.color = "#2e66ff";
-        payloadNote.textContent = "Start typing to arm the transmission.";
+        if (payloadNote) if (payloadNote) payloadNote.textContent = "Start typing your message.";
         if (handshake) {
-          handshake.textContent = "IDLE";
-          handshake.style.color = "#2e66ff";
-        }
+            handshake.textContent = "IDLE";
+            handshake.style.color = "#2e66ff";
+          }
         headerStatus.textContent = "READY";
         updatePayload();
       });
@@ -704,8 +642,8 @@
         const from = fromEl.value.trim() || "no-reply";
         const msg = msgEl.value.trim();
 
-        handshake.textContent = "HANDSHAKE";
-        handshake.style.color = "#ccff00";
+        if (handshake) handshake.textContent = "HANDSHAKE";
+        if (handshake) handshake.style.color = "#ccff00";
         headerStatus.textContent = "TRANSMITTING";
         headerStatus.style.color = "#ccff00";
 
@@ -722,8 +660,8 @@
         window.location.href = href;
 
         setTimeout(() => {
-          handshake.textContent = "SENT";
-          handshake.style.color = "#ccff00";
+          if (handshake) handshake.textContent = "SENT";
+          if (handshake) handshake.style.color = "#ccff00";
           headerStatus.textContent = "READY";
         }, 850);
       });
