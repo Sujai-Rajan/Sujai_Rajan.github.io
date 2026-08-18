@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sujai-rajan.github.io/portfolio/sitemap.xml
